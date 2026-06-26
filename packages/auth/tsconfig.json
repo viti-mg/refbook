@@ -7,6 +7,9 @@
   "references": [
     {
       "path": "../db"
+    },
+    {
+      "path": "../config"
     }
   ],
   "include": [
@@ -14,6 +17,7 @@
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/__tests__"
   ]
 }

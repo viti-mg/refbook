@@ -7,6 +7,7 @@ Better Auth has been configured to provide email/password authentication for the
 ## Implementation Status
 
 ✅ **Completed**: Better Auth configuration and schema setup (Slice 01 of Email Auth PRD)
+✅ **Completed**: API integration and UI components (Slice 02 of Email Auth PRD)
 
 ## Configuration
 
@@ -145,17 +146,22 @@ export type { auth } from './auth';
 - Ensures required environment variables are set
 - Type-safe environment configuration
 
-### With API Package (Future)
+### With API Package
 
-- Will be integrated with tRPC router in `packages/api`
-- Auth procedures will be exposed via tRPC
+- Integrated with tRPC router in `packages/api/src/router.ts`
+- Auth procedures exposed via tRPC: signUp, signIn, signOut, getSession
 - Type-safe client-server auth operations
+- Better Auth instance imported and used in tRPC procedures
 
-### With App Package (Future)
+### With App Package
 
-- React components will use Better Auth React client
+- React components use Better Auth React client (`apps/app/src/lib/auth-client.ts`)
+- SignUp component (`apps/app/src/components/SignUp.tsx`)
+- SignIn component (`apps/app/src/components/SignIn.tsx`)
 - Session management in TanStack Start routes
 - Route protection based on authentication status
+- Header component displays user information and sign out button
+- Better Auth API route handler at `/api/auth/$`
 
 ## Testing
 
@@ -219,14 +225,75 @@ If you encounter workspace dependency issues:
 2. Ensure all packages are built: `npm run build`
 3. Clear node_modules and reinstall if needed
 
+## Usage
+
+### Client-Side Usage
+
+In React components, use the Better Auth React client:
+
+```typescript
+import { authClient } from '../lib/auth-client';
+
+// Sign up
+await authClient.signUp.email({
+  email: 'user@example.com',
+  password: 'password123',
+  name: 'John Doe',
+});
+
+// Sign in
+await authClient.signIn.email({
+  email: 'user@example.com',
+  password: 'password123',
+});
+
+// Sign out
+await authClient.signOut();
+
+// Get session
+const { data: session, isPending } = authClient.useSession();
+```
+
+### Server-Side Usage
+
+In tRPC procedures, use the Better Auth instance:
+
+```typescript
+import { auth } from '@packages/auth';
+
+// Sign up procedure
+const result = await auth.api.signUpEmail({
+  body: { email, password, name },
+});
+
+// Get session
+const session = await auth.api.getSession({ headers });
+```
+
+### Route Protection
+
+Protected routes use `beforeLoad` to check authentication:
+
+```typescript
+export const Route = createFileRoute('/competitions')({
+  beforeLoad: async () => {
+    const session = await authClient.getSession();
+    if (!session.data?.user) {
+      throw redirect({ to: '/auth/login' });
+    }
+  },
+});
+```
+
 ## Next Steps
 
-The next slice (02-api-integration-ui.md) will:
+The email authentication feature is now complete. Future enhancements may include:
 
-1. Integrate Better Auth with tRPC router in `packages/api`
-2. Create SignUp and SignIn UI components in `apps/app`
-3. Implement route protection using Better Auth session hooks
-4. Update Header component to display user information
+1. Email verification flow
+2. OAuth providers (Google, GitHub)
+3. Two-factor authentication
+4. Password reset flow
+5. Session management UI
 
 ## References
 

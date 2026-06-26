@@ -1,7 +1,16 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
+import { authClient } from '../lib/auth-client';
 
 export const Route = createFileRoute('/competitions')({
   component: Competitions,
+  beforeLoad: async () => {
+    const session = await authClient.getSession();
+    if (!session.data?.user) {
+      throw redirect({
+        to: '/auth/login',
+      });
+    }
+  },
 });
 
 function Competitions() {

@@ -1,7 +1,15 @@
 import { Link } from '@tanstack/react-router';
 import ThemeToggle from './ThemeToggle';
+import { authClient } from '../lib/auth-client';
 
 export default function Header() {
+  const { data: session, isPending } = authClient.useSession();
+
+  const handleSignOut = async () => {
+    await authClient.signOut();
+    window.location.href = '/';
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-lg">
       <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
@@ -26,13 +34,31 @@ export default function Header() {
           >
             Competitions
           </Link>
-          <Link
-            to="/auth/login"
-            className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
-          >
-            Sign In
-          </Link>
+          
+          {isPending ? (
+            <span className="text-sm text-[var(--sea-ink-soft)]">Loading...</span>
+          ) : session?.user ? (
+            <>
+              <span className="text-sm text-[var(--sea-ink-soft)]">
+                {session.user.email}
+              </span>
+              <button
+                onClick={handleSignOut}
+                className="nav-link"
+                type="button"
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/auth/login"
+              className="nav-link"
+              activeProps={{ className: 'nav-link is-active' }}
+            >
+              Sign In
+            </Link>
+          )}
         </div>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">

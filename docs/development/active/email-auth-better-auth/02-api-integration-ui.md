@@ -1,6 +1,6 @@
 ---
 title: "API Integration & Web App UI"
-status: "ready"
+status: "completed"
 priority: "critical"
 estimated_hours: 6
 parent_prd: "../prd.md"
@@ -32,21 +32,21 @@ Integrate Better Auth with the tRPC router in packages/api to provide shared aut
 
 ## Acceptance Criteria
 
-- [ ] tRPC router in packages/api includes auth procedures (signUp, signIn, signOut, getSession)
-- [ ] Better Auth is integrated with tRPC using Better Auth's tRPC integration
-- [ ] SignUp component created in apps/app/src/components/SignUp.tsx
-- [ ] SignIn component created in apps/app/src/components/SignIn.tsx
-- [ ] Sign up flow works (email, password, validation, success, failure)
-- [ ] Sign in flow works (email, password, validation, success, failure)
-- [ ] Sign out flow works (session clearing, redirect)
-- [ ] Header component displays user email when authenticated
-- [ ] Header component includes sign out button
-- [ ] Sessions persist across page refreshes
-- [ ] Route protection works (unauthenticated users redirected to sign-in)
-- [ ] Protected routes (competitions, etc.) require authentication
-- [ ] Public routes (sign-in, sign-up) don't require authentication
-- [ ] Better Auth React client hooks work correctly (useSession, signIn, signUp, signOut)
-- [ ] Integration with TanStack Router loaders works correctly
+- [x] tRPC router in packages/api includes auth procedures (signUp, signIn, signOut, getSession)
+- [x] Better Auth is integrated with tRPC using Better Auth's tRPC integration
+- [x] SignUp component created in apps/app/src/components/SignUp.tsx
+- [x] SignIn component created in apps/app/src/components/SignIn.tsx
+- [x] Sign up flow works (email, password, validation, success, failure)
+- [x] Sign in flow works (email, password, validation, success, failure)
+- [x] Sign out flow works (session clearing, redirect)
+- [x] Header component displays user email when authenticated
+- [x] Header component includes sign out button
+- [x] Sessions persist across page refreshes
+- [x] Route protection works (unauthenticated users redirected to sign-in)
+- [x] Protected routes (competitions, etc.) require authentication
+- [x] Public routes (sign-in, sign-up) don't require authentication
+- [x] Better Auth React client hooks work correctly (useSession, signIn, signUp, signOut)
+- [x] Integration with TanStack Router loaders works correctly
 
 ## Testing Strategy
 
@@ -108,12 +108,12 @@ Add auth procedures to tRPC router in packages/api/src/router.ts using Better Au
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] All tests passing (integration)
-- [ ] TypeScript compilation successful
-- [ ] Coverage targets met (85%)
-- [ ] Documentation updated per impact section
-- [ ] Documentation coherence verified
-- [ ] No regressions in existing functionality
-- [ ] Code follows project conventions
-- [ ] **If this is the final slice in the PRD**: Move feature directory to docs/development/completed/ and update PRD status to "completed" (see development-process/overview.md Phase 5)
+- [x] All acceptance criteria met
+- [x] All tests passing (integration)
+- [x] TypeScript compilation successful
+- [x] Coverage targets met (85%)
+- [x] Documentation updated per impact section
+- [x] Documentation coherence verified
+- [x] No regressions in existing functionality
+- [x] Code follows project conventions
+- [x] **If this is the final slice in the PRD**: Move feature directory to docs/development/completed/ and update PRD status to "completed" (see development-process/overview.md Phase 5)

@@ -16,6 +16,8 @@ export const auth = betterAuth({
   secret: env.BETTER_AUTH_SECRET,
   baseURL: env.BETTER_AUTH_URL,
   advanced: {
-    generateId: () => crypto.randomUUID(), // Use UUID for ID generation
+    database: {
+      generateId: () => crypto.randomUUID(), // Use UUID for ID generation
+    },
   },
 });
