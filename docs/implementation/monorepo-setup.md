@@ -1,0 +1,628 @@
+# Monorepo Setup Guide
+
+## Overview
+
+This guide covers setting up the Turborepo monorepo structure for the RefBook application, including package configuration, tooling setup, and development workflow.
+
+## Initial Setup
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn or pnpm
+- Git
+
+### Repository Initialization
+```bash
+# Initialize repository
+git init
+npm init -y
+
+# Install Turborepo
+npm install -D turbo
+```
+
+### Turborepo Configuration
+```json
+// turbo.json
+{
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "build/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": ["coverage/**"]
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}
+```
+
+## Package Structure Setup
+
+### Root Package Configuration
+```json
+// package.json
+{
+  "name": "refbook",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  }
+}
+```
+
+### Root TypeScript Configuration
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["node_modules", "dist", "build"]
+}
+```
+
+## Shared Packages Setup
+
+### Package: @packages/db
+```bash
+mkdir -p packages/db/src
+cd packages/db
+npm init -y
+```
+
+```json
+// packages/db/package.json
+{
+  "name": "@packages/db",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "push": "drizzle-kit push"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.28.0",
+    "postgres": "^3.4.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.19.0",
+    "typescript": "^5.0.0"
+  }
+}
+```
+
+```typescript
+// packages/db/src/schema.ts
+import { pgTable, serial, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+
+export const users = pgTable('users', {
+  id: text('id').primaryKey(),
+  email: text('email').notNull().unique(),
+  username: text('username').notNull().unique(),
+  name: text('name'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+export const competitions = pgTable('competitions', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: text('user_id').notNull().references(() => users.id),
+  name: text('name').notNull(),
+  sportType: text('sport_type').notNull(),
+  status: text('status').notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+  version: serial('version').default(1),
+});
+```
+
+```typescript
+// packages/db/src/index.ts
+export * from './schema';
+export { db } from './db';
+```
+
+### Package: @packages/api
+```bash
+mkdir -p packages/api/src
+cd packages/api
+npm init -y
+```
+
+```json
+// packages/api/package.json
+{
+  "name": "@packages/api",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@packages/db": "workspace:*",
+    "@packages/auth": "workspace:*",
+    "@packages/shared-types": "workspace:*",
+    "@trpc/server": "^10.0.0",
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
+```
+
+```typescript
+// packages/api/src/router.ts
+import { initTRPC } from '@trpc/server';
+import * as z from 'zod';
+
+const t = initTRPC.create();
+
+export const router = t.router({
+  competitions: t.router({
+    list: t.procedure.query(() => {
+      return [];
+    }),
+    create: t.procedure
+      .input(z.object({
+        name: z.string(),
+        sportType: z.string(),
+      }))
+      .mutation(({ input }) => {
+        return { id: '1', ...input };
+      }),
+  }),
+});
+
+export type AppRouter = typeof router;
+```
+
+### Package: @packages/auth
+```bash
+mkdir -p packages/auth/src
+cd packages/auth
+npm init -y
+```
+
+```json
+// packages/auth/package.json
+{
+  "name": "@packages/auth",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@packages/db": "workspace:*",
+    "better-auth": "^0.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
+```
+
+```typescript
+// packages/auth/src/auth.ts
+import { betterAuth } from 'better-auth';
+import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { db } from '@packages/db';
+
+export const auth = betterAuth({
+  database: drizzleAdapter(db, {
+    provider: 'postgresql',
+  }),
+  emailAndPassword: {
+    enabled: true,
+  },
+});
+```
+
+### Package: @packages/shared-types
+```bash
+mkdir -p packages/shared-types/src
+cd packages/shared-types
+npm init -y
+```
+
+```json
+// packages/shared-types/package.json
+{
+  "name": "@packages/shared-types",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
+```
+
+```typescript
+// packages/shared-types/src/index.ts
+import { z } from 'zod';
+
+export const CompetitionSchema = z.object({
+  id: z.string().uuid(),
+  userId: z.string(),
+  name: z.string(),
+  sportType: z.enum(['football', 'athletics']),
+  status: z.enum(['scheduled', 'in_progress', 'completed', 'cancelled']),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+  version: z.number(),
+});
+
+export type Competition = z.infer<typeof CompetitionSchema>;
+```
+
+## Application Setup
+
+### App: Web (TanStack Start)
+```bash
+mkdir -p apps/web
+cd apps/web
+npm create @tanstack/start@latest
+```
+
+```json
+// apps/web/package.json
+{
+  "name": "@apps/web",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.0.0",
+    "@tanstack/react-form": "^0.0.0",
+    "@packages/api": "workspace:*",
+    "@packages/auth": "workspace:*",
+    "@packages/shared-types": "workspace:*",
+    "@tanstack/start": "^1.0.0"
+  }
+}
+```
+
+### App: Mobile (React Native + Expo)
+```bash
+mkdir -p apps/mobile
+cd apps/mobile
+npx create-expo-app@latest
+```
+
+```json
+// apps/mobile/package.json
+{
+  "name": "@apps/mobile",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "build": "expo export"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.0.0",
+    "@tanstack/react-form": "^0.0.0",
+    "@packages/api": "workspace:*",
+    "@packages/auth": "workspace:*",
+    "@packages/shared-types": "workspace:*",
+    "@packages/sync-engine": "workspace:*",
+    "expo": "^49.0.0",
+    "react": "^18.0.0",
+    "react-native": "^0.72.0"
+  }
+}
+```
+
+### App: API Server
+```bash
+mkdir -p apps/api-server/src
+cd apps/api-server
+npm init -y
+```
+
+```json
+// apps/api-server/package.json
+{
+  "name": "@apps/api-server",
+  "version": "0.0.0",
+  "main": "./src/server.ts",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@packages/api": "workspace:*",
+    "@packages/db": "workspace:*",
+    "@packages/auth": "workspace:*",
+    "@trpc/server": "^10.0.0",
+    "ws": "^8.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}
+```
+
+```typescript
+// apps/api-server/src/server.ts
+import { createTRPCContext } from '@packages/api';
+import { router } from '@packages/api';
+import { applyWSSHandler } from '@trpc/server/adapters/ws';
+import ws from 'ws';
+import http from 'http';
+
+const server = http.createServer();
+const wss = new ws.Server({ server });
+
+applyWSSHandler({
+  wss,
+  router,
+  createContext: createTRPCContext,
+});
+
+server.listen(3001, () => {
+  console.log('Server running on port 3001');
+});
+```
+
+## Shared Configuration
+
+### ESLint Configuration
+```javascript
+// .eslintrc.js
+module.exports = {
+  root: true,
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+  ignorePatterns: ['dist', 'build', 'node_modules'],
+};
+```
+
+### Prettier Configuration
+```json
+// .prettierrc
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 2
+}
+```
+
+### Git Ignore
+```gitignore
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+```
+
+## Development Workflow
+
+### Installation
+```bash
+# Install all dependencies
+npm install
+
+# Install specific package dependencies
+npm install --filter=@packages/db
+```
+
+### Development
+```bash
+# Start all applications
+npm run dev
+
+# Start specific application
+npm run dev --filter=@apps/web
+
+# Start specific package in watch mode
+npm run dev --filter=@packages/api
+```
+
+### Building
+```bash
+# Build all packages and apps
+npm run build
+
+# Build specific package
+npm run build --filter=@packages/api
+
+# Build specific app
+npm run build --filter=@apps/web
+```
+
+### Testing
+```bash
+# Run all tests
+npm run test
+
+# Run specific package tests
+npm run test --filter=@packages/api
+
+# Run tests in watch mode
+npm run test --watch
+```
+
+### Linting
+```bash
+# Lint all packages
+npm run lint
+
+# Lint specific package
+npm run lint --filter=@apps/web
+
+# Auto-fix linting issues
+npm run lint --fix
+```
+
+## Troubleshooting
+
+### Common Issues
+
+#### Workspace Dependencies Not Resolving
+```bash
+# Clear node_modules and reinstall
+rm -rf node_modules
+npm install
+```
+
+#### TypeScript Errors Across Packages
+```bash
+# Ensure all packages are built
+npm run build
+
+# Check TypeScript configuration
+npm run type-check
+```
+
+#### Turborepo Cache Issues
+```bash
+# Clear Turborepo cache
+rm -rf .turbo
+npm run build --force
+```
+
+## Best Practices
+
+### Package Dependencies
+- Use workspace references for internal packages
+- Keep dependencies minimal
+- Use exact versions for production
+- Regular security audits
+
+### Code Organization
+- Keep shared logic in packages
+- Platform-specific code in apps
+- Clear separation of concerns
+- Consistent naming conventions
+
+### Git Workflow
+- Feature branches for new features
+- Pull requests for changes
+- Code reviews required
+- Automated tests must pass
+
+## Performance Optimization
+
+### Build Performance
+- Use Turborepo caching
+- Parallel builds where possible
+- Incremental builds
+- Optimize dependency tree
+
+### Development Performance
+- Hot module replacement
+- Fast refresh
+- Efficient watch mode
+- Minimal rebuilds
+
+## Next Steps
+
+After setting up the monorepo:
+1. Configure database connection
+2. Set up authentication
+3. Implement basic API routes
+4. Create UI components
+5. Set up testing framework
+6. Configure CI/CD pipeline

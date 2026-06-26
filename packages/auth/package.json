@@ -1,0 +1,17 @@
+{
+  "name": "@packages/auth",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@packages/db": "workspace:*",
+    "better-auth": "^0.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

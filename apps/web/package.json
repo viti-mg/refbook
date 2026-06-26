@@ -1,0 +1,17 @@
+{
+  "name": "@apps/web",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.0.0",
+    "@tanstack/react-form": "^0.0.0",
+    "@packages/api": "workspace:*",
+    "@packages/auth": "workspace:*",
+    "@packages/shared-types": "workspace:*",
+    "@tanstack/start": "^1.0.0"
+  }
+}
