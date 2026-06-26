@@ -358,19 +358,109 @@ npm create @tanstack/start@latest
   "name": "@apps/app",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vinxi dev",
-    "build": "vinxi build",
-    "start": "vinxi start"
+    "dev": "vite dev --port 3000",
+    "generate-routes": "tsr generate",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.0.0",
-    "@tanstack/react-form": "^0.0.0",
     "@packages/api": "workspace:*",
     "@packages/auth": "workspace:*",
     "@packages/shared-types": "workspace:*",
-    "@tanstack/start": "^1.0.0"
+    "@trpc/client": "^11.0.0",
+    "@trpc/react-query": "^11.0.0",
+    "@tanstack/react-query": "^5.0.0",
+    "@tanstack/react-query-devtools": "^5.0.0",
+    "@tanstack/react-router": "^1.0.0",
+    "@tanstack/react-start": "^1.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tanstack/router-plugin": "^1.0.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^6.0.0",
+    "vite": "^8.0.0",
+    "vitest": "^4.0.0"
   }
 }
+```
+
+### Monorepo Package Integration
+
+The TanStack Start application integrates with existing monorepo packages through workspace dependencies:
+
+#### TypeScript Configuration
+```json
+// apps/app/tsconfig.json
+{
+  "compilerOptions": {
+    "paths": {
+      "@packages/*": ["../../packages/*/src"],
+      "@apps/*": ["../../apps/*/src"]
+    }
+  }
+}
+```
+
+#### tRPC Client Setup
+```typescript
+// apps/app/src/lib/trpc-provider.tsx
+import { createTRPCReact } from '@trpc/react-query';
+import { httpBatchLink } from '@trpc/client';
+import type { AppRouter } from '@packages/api';
+
+export const trpc = createTRPCReact<AppRouter>();
+
+export function TRPCProvider({ children }: { children: React.ReactNode }) {
+  const [trpcClient] = useState(() =>
+    trpc.createClient({
+      links: [
+        httpBatchLink({
+          url: '/api/trpc',
+        }),
+      ],
+    })
+  );
+
+  return (
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      {children}
+    </trpc.Provider>
+  );
+}
+```
+
+#### Shared Types Integration
+```typescript
+// apps/app/src/lib/types.ts
+export { CompetitionSchema, type Competition } from '@packages/shared-types';
+```
+
+#### Server-Only Database Access
+```typescript
+// apps/app/src/server/db.ts
+import { db } from '@packages/db';
+
+// This file can only be imported in server-side code
+export { db };
+```
+
+#### Server Functions
+```typescript
+// apps/app/src/server/functions.ts
+import { createServerFn } from '@tanstack/react-start';
+import { db } from './server/db';
+
+export const getCompetitionsServer = createServerFn()
+  .handler(async () => {
+    // Server functions have access to @packages/db
+    return await db.query.competitions.findMany();
+  });
+```
 ```
 
 ### App: Mobile (React Native + Expo)

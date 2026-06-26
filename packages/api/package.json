@@ -8,11 +8,11 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@packages/db": "workspace:*",
     "@packages/auth": "workspace:*",
+    "@packages/db": "workspace:*",
     "@packages/shared-types": "workspace:*",
     "@trpc/server": "^11.18.0",
-    "zod": "^3.23.0"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "typescript": "^5.0.0"

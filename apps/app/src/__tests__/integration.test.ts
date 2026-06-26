@@ -44,3 +44,36 @@ describe('Application Structure Integration Tests', () => {
     expect(registerRoute).toBeDefined()
   })
 })
+
+describe('Monorepo Package Integration Tests', () => {
+  it('should have @packages/api in dependencies', () => {
+    // Verify that the package is configured in package.json
+    const pkg = require('../../package.json')
+    expect(pkg.dependencies['@packages/api']).toBe('workspace:*')
+  })
+
+  it('should have @packages/auth in dependencies', () => {
+    // Verify that the package is configured in package.json
+    const pkg = require('../../package.json')
+    expect(pkg.dependencies['@packages/auth']).toBe('workspace:*')
+  })
+
+  it('should have @packages/shared-types in dependencies', () => {
+    // Verify that the package is configured in package.json
+    const pkg = require('../../package.json')
+    expect(pkg.dependencies['@packages/shared-types']).toBe('workspace:*')
+  })
+
+  it('should have tRPC client dependencies installed', () => {
+    // Verify that tRPC client dependencies are installed
+    const pkg = require('../../package.json')
+    expect(pkg.dependencies['@trpc/client']).toBeDefined()
+    expect(pkg.dependencies['@trpc/react-query']).toBeDefined()
+  })
+
+  it('should have TanStack Query installed', () => {
+    // Verify that TanStack Query is installed
+    const pkg = require('../../package.json')
+    expect(pkg.dependencies['@tanstack/react-query']).toBeDefined()
+  })
+})

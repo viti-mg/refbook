@@ -1,6 +1,6 @@
 ---
 title: "Integrate Monorepo Packages"
-status: "ready"
+status: "completed"
 priority: "critical"
 estimated_hours: 3
 parent_prd: "./prd.md"

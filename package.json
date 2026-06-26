@@ -10,11 +10,11 @@
     "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "turbo": "^1.10.0",
-    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
     "eslint": "^9.0.0",
     "prettier": "^3.0.0",
-    "@types/node": "^20.0.0"
+    "turbo": "^1.10.0",
+    "typescript": "^5.0.0"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -24,5 +24,8 @@
       "esbuild",
       "lightningcss"
     ]
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
   }
 }
