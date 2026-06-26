@@ -14,13 +14,13 @@ coverage_target: 80
 
 ## What to build
 
-Configure the application to import and use existing monorepo packages: @packages/api for client-side tRPC calls, @packages/auth for auth client configuration, @packages/shared-types for TypeScript types. Set up server-only access patterns for @packages/db (restricted to server functions). Verify that all imports work correctly and TypeScript compilation succeeds.
+Configure the application to import and use existing monorepo packages: @packages/api for client-side tRPC calls, @packages/auth for auth client configuration, @packages/types for TypeScript types. Set up server-only access patterns for @packages/db (restricted to server functions). Verify that all imports work correctly and TypeScript compilation succeeds.
 
 ## Acceptance criteria
 
 - [ ] @packages/api is imported and functional for client-side tRPC calls
 - [ ] @packages/auth is imported and configured for auth client
-- [ ] @packages/shared-types is imported and TypeScript types are available
+- [ ] @packages/types is imported and TypeScript types are available
 - [ ] @packages/db is accessible only in server-side code (server functions)
 - [ ] All package imports resolve correctly with no TypeScript errors
 - [ ] Integration tests verify monorepo package functionality

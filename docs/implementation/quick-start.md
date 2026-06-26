@@ -174,7 +174,7 @@ refbook/
 │   ├── api/           # Shared tRPC router
 │   ├── db/            # Drizzle ORM schema
 │   ├── auth/          # Better Auth configuration
-│   ├── shared-types/  # Shared TypeScript types
+│   ├── types/         # Shared TypeScript types
 │   └── sync-engine/   # Offline sync logic
 └── docs/              # Documentation
 ```

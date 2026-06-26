@@ -102,7 +102,7 @@
 │  ├── api/              # tRPC router & server logic                         │
 │  ├── db/               # Drizzle schema & migrations                         │
 │  ├── auth/             # Better Auth configuration                          │
-│  ├── shared-types/     # TypeScript types shared across apps                 │
+│  ├── types/            # TypeScript types shared across apps                 │
 │  ├── sync-engine/      # Offline sync & conflict resolution                 │
 │  ├── ui/               # Shared UI components (if any)                       │
 │  └── config/           # Shared ESLint, TSConfig, etc.                       │

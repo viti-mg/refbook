@@ -187,7 +187,7 @@ npm init -y
   "dependencies": {
     "@packages/db": "workspace:*",
     "@packages/auth": "workspace:*",
-    "@packages/shared-types": "workspace:*",
+    "@packages/types": "workspace:*",
     "@trpc/server": "^10.0.0",
     "zod": "^3.0.0"
   },
@@ -267,17 +267,17 @@ export const auth = betterAuth({
 });
 ```
 
-### Package: @packages/shared-types
+### Package: @packages/types
 ```bash
-mkdir -p packages/shared-types/src
-cd packages/shared-types
+mkdir -p packages/types/src
+cd packages/types
 npm init -y
 ```
 
 ```json
-// packages/shared-types/package.json
+// packages/types/package.json
 {
-  "name": "@packages/shared-types",
+  "name": "@packages/types",
   "version": "0.0.0",
   "main": "./index.ts",
   "types": "./index.ts",
@@ -295,7 +295,7 @@ npm init -y
 ```
 
 ```typescript
-// packages/shared-types/src/index.ts
+// packages/types/src/index.ts
 import { z } from 'zod';
 
 export const CompetitionSchema = z.object({
@@ -337,7 +337,7 @@ npm create @tanstack/start@latest
     "@packages/api": "workspace:*",
     "@packages/auth": "workspace:*",
     "@packages/db": "workspace:*",
-    "@packages/shared-types": "workspace:*",
+    "@packages/types": "workspace:*",
     "@trpc/client": "^11.0.0",
     "@trpc/react-query": "^11.0.0",
     "@tanstack/react-query": "^5.0.0",
@@ -550,7 +550,7 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
 #### Shared Types Integration
 ```typescript
 // apps/app/src/lib/types.ts
-export { CompetitionSchema, type Competition } from '@packages/shared-types';
+export { CompetitionSchema, type Competition } from '@packages/types';
 ```
 
 #### Server-Only Database Access
@@ -599,7 +599,7 @@ npx create-expo-app@latest
     "@tanstack/react-form": "^0.0.0",
     "@packages/api": "workspace:*",
     "@packages/auth": "workspace:*",
-    "@packages/shared-types": "workspace:*",
+    "@packages/types": "workspace:*",
     "@packages/sync-engine": "workspace:*",
     "expo": "^49.0.0",
     "react": "^18.0.0",

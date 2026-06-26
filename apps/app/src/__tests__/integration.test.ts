@@ -60,9 +60,9 @@ describe('Monorepo Package Integration Tests', () => {
     expect(packageJson.dependencies['@packages/auth']).toBe('workspace:*');
   });
 
-  it('should have @packages/shared-types in dependencies', () => {
+  it('should have @packages/types in dependencies', () => {
     // Verify that the package is configured in package.json
-    expect(packageJson.dependencies['@packages/shared-types']).toBe('workspace:*');
+    expect(packageJson.dependencies['@packages/types']).toBe('workspace:*');
   });
 
   it('should have tRPC client dependencies installed', () => {

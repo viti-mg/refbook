@@ -12,7 +12,7 @@
       "path": "../auth"
     },
     {
-      "path": "../shared-types"
+      "path": "../types"
     }
   ],
   "include": [

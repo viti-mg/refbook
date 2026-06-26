@@ -10,7 +10,7 @@
   "dependencies": {
     "@packages/auth": "workspace:*",
     "@packages/db": "workspace:*",
-    "@packages/shared-types": "workspace:*",
+    "@packages/types": "workspace:*",
     "@trpc/server": "^11.18.0",
     "zod": "^4.4.3"
   },

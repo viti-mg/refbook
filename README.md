@@ -16,7 +16,7 @@ refbook/
 │   ├── api/                    # Shared tRPC router and server logic
 │   ├── db/                     # Drizzle ORM schema and migrations
 │   ├── auth/                   # Better Auth configuration
-│   ├── shared-types/           # Shared TypeScript types
+│   ├── types/                  # Shared TypeScript types
 │   ├── sync-engine/            # Offline sync and conflict resolution
 │   ├── ui/                     # Shared UI components
 │   └── config/                 # Shared configuration

@@ -38,7 +38,7 @@ refbook/
 │   │   │   ├── plugins/        # Custom auth plugins
 │   │   │   └── client.ts       # Auth client configuration
 │   │   └── index.ts
-│   ├── shared-types/           # Shared TypeScript types
+│   ├── types/                  # Shared TypeScript types
 │   │   ├── src/
 │   │   │   ├── models/         # Data model types
 │   │   │   ├── api/            # API-related types
@@ -74,7 +74,7 @@ refbook/
 - **@tanstack/react-form**: Form management
 - **@packages/api**: Shared tRPC client
 - **@packages/auth**: Auth client
-- **@packages/shared-types**: Shared types
+- **@packages/types**: Shared types
 - **@packages/ui**: Shared UI components
 - **shadcn-ui**: UI components
 
@@ -85,7 +85,7 @@ refbook/
 - **@tanstack/react-form**: Form management
 - **@packages/api**: Shared tRPC client
 - **@packages/auth**: Auth client
-- **@packages/shared-types**: Shared types
+- **@packages/types**: Shared types
 - **@packages/sync-engine**: Sync logic
 - **expo-sqlite**: Local database
 
@@ -94,7 +94,7 @@ refbook/
 - **@packages/api**: tRPC router
 - **@packages/db**: Database access
 - **@packages/auth**: Auth server
-- **@packages/shared-types**: Shared types
+- **@packages/types**: Shared types
 - **ws**: WebSocket server
 - **better-auth**: Authentication
 
@@ -102,7 +102,7 @@ refbook/
 - **@trpc/server**: tRPC server
 - **@packages/db**: Database access
 - **@packages/auth**: Authentication
-- **@packages/shared-types**: Shared types
+- **@packages/types**: Shared types
 - **zod**: Runtime validation
 
 ### packages/db
@@ -114,13 +114,13 @@ refbook/
 - **better-auth**: Authentication framework
 - **@packages/db**: Database access
 
-### packages/shared-types
+### packages/types
 - **zod**: Runtime validation
 - **typescript**: Type definitions
 
 ### packages/sync-engine
 - **@tanstack/pacer**: Batching and throttling
-- **@packages/shared-types**: Shared types
+- **@packages/types**: Shared types
 
 ### packages/ui
 - **react**: React
@@ -182,7 +182,7 @@ refbook/
 
 ### Shared Business Logic
 - **API layer**: tRPC procedures shared across platforms
-- **Data models**: TypeScript types in shared-types
+- **Data models**: TypeScript types in types
 - **Validation**: Zod schemas shared between client and server
 - **Sync logic**: Sync engine shared between web and mobile
 

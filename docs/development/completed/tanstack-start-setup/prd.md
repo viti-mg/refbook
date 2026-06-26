@@ -16,7 +16,7 @@ The current web application setup uses a basic Vite + React configuration in `ap
 
 ## Solution
 
-Create a new TanStack Start application in `apps/app` for the referee application (app.refbook.com) while leaving the existing `apps/web` for the marketing site (refbook.com). The new application will follow the documented TanStack Start setup from the monorepo setup guide, with proper integration with existing monorepo packages (@packages/api, @packages/auth, @packages/shared-types, @packages/db). This will enable server-side rendering, server functions, file-based routing, and full-stack capabilities required for the referee application.
+Create a new TanStack Start application in `apps/app` for the referee application (app.refbook.com) while leaving the existing `apps/web` for the marketing site (refbook.com). The new application will follow the documented TanStack Start setup from the monorepo setup guide, with proper integration with existing monorepo packages (@packages/api, @packages/auth, @packages/types, @packages/db). This will enable server-side rendering, server functions, file-based routing, and full-stack capabilities required for the referee application.
 
 ## User Stories
 
@@ -47,7 +47,7 @@ Create a new TanStack Start application in `apps/app` for the referee applicatio
 - Integrate with existing monorepo packages:
   - Import @packages/api for client-side tRPC calls
   - Import @packages/auth for auth client configuration  
-  - Import @packages/shared-types for TypeScript types
+  - Import @packages/types for TypeScript types
   - Restrict @packages/db access to server-side code only (server functions)
 - Install and configure shadcn/ui with Tailwind CSS and Base UI primitives
 - Set up testing infrastructure:
@@ -70,7 +70,7 @@ Create a new TanStack Start application in `apps/app` for the referee applicatio
 
 ## Testing Decisions
 
-- Test primarily at the integration level - verify that `apps/app` properly integrates with monorepo packages (@packages/api, @packages/auth, @packages/shared-types)
+- Test primarily at the integration level - verify that `apps/app` properly integrates with monorepo packages (@packages/api, @packages/auth, @packages/types)
 - Test server functions to ensure they work correctly with database operations and API calls
 - Test at the component level for UI components using React Testing Library
 - Test routing functionality to ensure file-based routing works as expected
@@ -107,7 +107,7 @@ The implementation follows the documented TanStack Start setup from the monorepo
 
 ## Dependencies
 
-- [ ] Existing monorepo packages (@packages/api, @packages/auth, @packages/shared-types, @packages/db) are properly configured
+- [ ] Existing monorepo packages (@packages/api, @packages/auth, @packages/types, @packages/db) are properly configured
 - [ ] Turborepo is properly configured in the root
 - [ ] PostgreSQL database is available for local development
 - [ ] Node.js 18+ is installed
