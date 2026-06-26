@@ -1,6 +1,6 @@
 ---
 title: "Configure Testing Infrastructure"
-status: "ready"
+status: "completed"
 priority: "high"
 estimated_hours: 4
 parent_prd: "./prd.md"
