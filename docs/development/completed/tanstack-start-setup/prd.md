@@ -1,7 +1,8 @@
 ---
 title: "TanStack Start Setup for Referee Application"
-status: "active"
+status: "completed"
 created: "2026-06-26"
+completed: "2026-06-26"
 author: "user/agent"
 estimated_slices: 3
 priority: "critical"
