@@ -1,0 +1,111 @@
+{
+  "card_types": [
+    {
+      "id": "yellow",
+      "name": "Yellow Card",
+      "color": "#FFFF00",
+      "display_duration": 5000
+    },
+    {
+      "id": "red",
+      "name": "Red Card",
+      "color": "#FF0000",
+      "display_duration": 10000
+    }
+  ],
+  "match_structure": {
+    "type": "halves",
+    "duration": 90,
+    "halves": 2,
+    "allow_extra_time": true
+  },
+  "action_types": [
+    {
+      "id": "goal",
+      "name": "Goal",
+      "fields": [
+        {
+          "name": "scorer_id",
+          "label": "Scorer",
+          "description": "Player who scored the goal",
+          "placeholder": "Enter player name or ID",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "assistant_id",
+          "label": "Assistant Referee",
+          "description": "Assistant referee who signaled the goal",
+          "placeholder": "Enter assistant referee name",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "minute",
+          "label": "Minute",
+          "description": "When the goal was scored",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "team",
+          "label": "Team",
+          "description": "Which team scored",
+          "placeholder": "Home or Away",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "substitution",
+      "name": "Substitution",
+      "fields": [
+        {
+          "name": "player_out",
+          "label": "Player Out",
+          "description": "Player being substituted",
+          "placeholder": "Enter player name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "player_in",
+          "label": "Player In",
+          "description": "Player entering the match",
+          "placeholder": "Enter player name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "minute",
+          "label": "Minute",
+          "description": "When the substitution occurred",
+          "type": "number",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "card_log",
+      "name": "Card Logged",
+      "fields": [
+        {
+          "name": "card_id",
+          "label": "Card",
+          "description": "Reference to the card that was shown",
+          "placeholder": "Select card",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "minute",
+          "label": "Minute",
+          "description": "When the card was shown",
+          "type": "number",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

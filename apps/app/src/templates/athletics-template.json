@@ -1,0 +1,98 @@
+{
+  "card_types": [
+    {
+      "id": "yellow",
+      "name": "Yellow Card",
+      "color": "#FFFF00",
+      "display_duration": 5000
+    },
+    {
+      "id": "red",
+      "name": "Red Card",
+      "color": "#FF0000",
+      "display_duration": 10000
+    }
+  ],
+  "match_structure": {
+    "type": "events",
+    "disciplines": ["track", "field"]
+  },
+  "action_types": [
+    {
+      "id": "false_start",
+      "name": "False Start",
+      "fields": [
+        {
+          "name": "athlete_id",
+          "label": "Athlete",
+          "description": "Athlete who false started",
+          "placeholder": "Enter athlete name or ID",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "lane_number",
+          "label": "Lane Number",
+          "description": "Lane where the false start occurred",
+          "placeholder": "Enter lane number",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "heat_number",
+          "label": "Heat Number",
+          "description": "Heat number",
+          "placeholder": "Enter heat number",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "notes",
+          "label": "Notes",
+          "description": "Additional notes about the false start",
+          "placeholder": "Enter any additional notes",
+          "type": "text",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "lane_infringement",
+      "name": "Lane Infringement",
+      "fields": [
+        {
+          "name": "athlete_id",
+          "label": "Athlete",
+          "description": "Athlete who committed the infringement",
+          "placeholder": "Enter athlete name or ID",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "lane_number",
+          "label": "Lane Number",
+          "description": "Lane where the infringement occurred",
+          "placeholder": "Enter lane number",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "infringement_type",
+          "label": "Infringement Type",
+          "description": "Type of lane infringement",
+          "placeholder": "e.g., stepping out of lane, impeding another athlete",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "event_stage",
+          "label": "Event Stage",
+          "description": "Stage of the event",
+          "placeholder": "e.g., heat, semi-final, final",
+          "type": "text",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
