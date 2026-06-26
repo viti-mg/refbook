@@ -1,7 +1,8 @@
 ---
 title: "Email Authentication with Better Auth"
-status: "active"
+status: "completed"
 created: "2026-06-26"
+completed: "2026-06-26"
 author: "user/devin"
 estimated_slices: 2
 priority: "critical"
