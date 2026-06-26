@@ -1,6 +1,6 @@
 ---
 title: "Database Schema Extension"
-status: "ready"
+status: "completed"
 priority: "high"
 estimated_hours: 3
 parent_prd: "../prd.md"
@@ -26,14 +26,14 @@ Extend the existing competitions table in packages/db/src/schema.ts to include a
 
 ## Acceptance Criteria
 
-- [ ] competitions table includes all MVP fields: id, user_id, sport_type, name, status, scheduled_start, actual_start, actual_end, location, notes, created_at, updated_at
-- [ ] user_id field has proper foreign key relationship to Better Auth users table
-- [ ] No version field included (MVP specification)
-- [ ] No audit logging fields included (MVP specification)
-- [ ] Database migration runs successfully using Drizzle
-- [ ] Schema matches documented MVP schema exactly
-- [ ] Data types and constraints are correct
-- [ ] Migration is reversible if needed
+- [x] competitions table includes all MVP fields: id, user_id, sport_type, name, status, scheduled_start, actual_start, actual_end, location, notes, created_at, updated_at
+- [x] user_id field has proper foreign key relationship to Better Auth users table
+- [x] No version field included (MVP specification)
+- [x] No audit logging fields included (MVP specification)
+- [x] Database migration runs successfully using Drizzle
+- [x] Schema matches documented MVP schema exactly
+- [x] Data types and constraints are correct
+- [x] Migration is reversible if needed
 
 ## Testing Strategy
 
@@ -66,7 +66,7 @@ Extend the existing competitions table in packages/db/src/schema.ts with the mis
 
 ### Integration Points
 - [x] packages/auth (Better Auth users table)
-- [ ] PostgreSQL database (migration target)
+- [x] PostgreSQL database (migration target)
 
 ### Data Changes
 - [x] Schema changes: Add scheduled_start, actual_start, actual_end, location, notes fields to competitions table
@@ -74,8 +74,8 @@ Extend the existing competitions table in packages/db/src/schema.ts with the mis
 
 ## Documentation Impact
 
-- **Database**: Update docs/data-model/mvp-schema.md to reflect implemented schema
-- **Architecture**: Update docs/architecture/system-architecture.md if needed
+- [x] **Database**: Update docs/data-model/mvp-schema.md to reflect implemented schema
+- [x] **Architecture**: Update docs/architecture/system-architecture.md if needed
 
 ## Blocked By
 
@@ -87,11 +87,11 @@ Extend the existing competitions table in packages/db/src/schema.ts with the mis
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] All tests passing (integration)
-- [ ] TypeScript compilation successful
-- [ ] Coverage targets met (85%)
-- [ ] Documentation updated per impact section
-- [ ] Documentation coherence verified
-- [ ] No regressions in existing functionality
-- [ ] Code follows project conventions
+- [x] All acceptance criteria met
+- [x] All tests passing (integration)
+- [x] TypeScript compilation successful
+- [x] Coverage targets met (85%)
+- [x] Documentation updated per impact section
+- [x] Documentation coherence verified
+- [x] No regressions in existing functionality
+- [x] Code follows project conventions

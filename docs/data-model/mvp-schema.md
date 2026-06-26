@@ -59,6 +59,8 @@ The MVP database schema focuses on the core functionality needed for solo refere
 ### competitions
 Represents a single competition in the MVP.
 
+**Implementation Status**: ✅ Implemented - Schema extended with MVP fields in `packages/db/src/schema.ts`. Migration file created in `packages/db/drizzle/0001_bright_jigsaw.sql`.
+
 ```sql
 - id: uuid (primary key)
 - user_id: text (foreign key → users.id)

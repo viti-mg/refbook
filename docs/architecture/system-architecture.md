@@ -54,7 +54,7 @@
          │  Tables:                              │
          │  • users                              │
          │  • sessions                           │
-         │  • competitions                       │
+         │  • competitions (MVP schema extended) │
          │  • cards                              │
          │  • disqualifications                  │
          │  • appeals                            │
