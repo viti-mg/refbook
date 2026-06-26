@@ -29,8 +29,6 @@
     "dist",
     "build",
     ".next",
-    ".vinxi",
-    "apps",
-    "packages"
+    ".vinxi"
   ]
 }
