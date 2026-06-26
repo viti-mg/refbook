@@ -1,6 +1,6 @@
 ---
 title: "Set Up UI Framework and Components"
-status: "ready"
+status: "completed"
 priority: "high"
 estimated_hours: 3
 parent_prd: "./prd.md"

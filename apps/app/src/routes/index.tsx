@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { DemoCard } from '../components/DemoCard'
 
 export const Route = createFileRoute('/')({ component: App })
 
@@ -76,6 +77,13 @@ function App() {
             Track your performance and manage your refereeing schedule.
           </li>
         </ul>
+      </section>
+
+      <section className="mt-8">
+        <p className="island-kicker mb-4">UI Framework Demo</p>
+        <div className="flex justify-center">
+          <DemoCard />
+        </div>
       </section>
     </main>
   )
