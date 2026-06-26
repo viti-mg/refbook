@@ -247,6 +247,75 @@ Competition CRUD operations are implemented as tRPC procedures in `packages/api/
 
 All procedures use Better Auth session to get the current user_id and validate input using Zod schemas.
 
+### API Implementation Details
+
+#### Input Validation Schemas
+
+The API uses Zod schemas for input validation:
+
+- `competitionFilterSchema`: Validates filter parameters for list queries (status, sportType, dateRange, search)
+- `competitionCreateSchema`: Validates competition creation (name, sportType, templateType, scheduledStart, location, notes)
+- `competitionUpdateSchema`: Validates competition updates (id, name, location, notes)
+- `competitionUpdateStatusSchema`: Validates status updates (id, status)
+- `competitionDeleteSchema`: Validates deletion requests (id)
+- `competitionGetSchema`: Validates get requests (id)
+
+#### Authentication
+
+All procedures use the `getCurrentUser()` helper function to:
+- Get the current user session from Better Auth
+- Throw an error if the user is not authenticated
+- Return the user object for use in database queries
+
+#### User Ownership Enforcement
+
+All database queries include user ownership checks:
+- List queries filter by `user_id`
+- Get queries verify the competition belongs to the user
+- Update/delete operations verify ownership before modifying data
+
+#### Template Integration
+
+The `competitions.getTemplates` procedure returns template data embedded in the API code:
+- Football template with card types, match structure (halves), and action types (goal, substitution, card_log)
+- Athletics template with card types, match structure (events), and action types (false_start, lane_infringement)
+
+The `competitions.create` procedure integrates template data by:
+- Accepting a `templateType` parameter
+- Fetching the corresponding template
+- Returning the created competition with template data
+
+#### Status Management
+
+The `competitions.updateStatus` procedure handles automatic timestamp updates:
+- When status changes to `in_progress`, sets `actualStart` to current time
+- When status changes to `completed`, sets `actualEnd` to current time
+- Supports flexible status transitions between all valid states
+
+#### Error Handling
+
+All procedures include comprehensive error handling:
+- Authentication errors for unauthenticated users
+- Not found errors for non-existent competitions
+- Validation errors for invalid input
+- Database errors for operation failures
+
+### API Testing
+
+The API procedures are tested in `packages/api/src/__tests__/competitions.test.ts`:
+
+- Schema validation tests for all input schemas
+- UUID validation tests
+- Enum validation tests for status and sport types
+- Required field validation tests
+- Optional field handling tests
+
+Run API tests:
+```bash
+cd packages/api
+pnpm test
+```
+
 ## UI Components
 
 Competition UI components are implemented in `apps/app/src/components/`:
@@ -276,5 +345,5 @@ All tests follow TDD principles and maintain 80%+ coverage for critical paths.
 
 - ✅ Database schema extension (Slice 01)
 - ✅ Template system setup (Slice 02)
-- ⏳ Competition API procedures (Slice 03)
+- ✅ Competition API procedures (Slice 03)
 - ⏳ Competition UI components and routes (Slice 04)

@@ -5,7 +5,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "test": "vitest"
   },
   "dependencies": {
     "@packages/auth": "workspace:*",
@@ -22,6 +23,8 @@
   "devDependencies": {
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^2.1.9"
   }
 }

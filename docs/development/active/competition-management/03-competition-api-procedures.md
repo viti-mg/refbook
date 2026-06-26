@@ -1,6 +1,6 @@
 ---
 title: "Competition API Procedures"
-status: "ready"
+status: "completed"
 priority: "high"
 estimated_hours: 4
 parent_prd: "../prd.md"
@@ -26,19 +26,19 @@ Implement competition CRUD operations as tRPC procedures in packages/api/src/rou
 
 ## Acceptance Criteria
 
-- [ ] competitions.list query fetches all competitions for authenticated user with optional filters (status, sport_type, date_range)
-- [ ] competitions.get query fetches a single competition by ID
-- [ ] competitions.getTemplates query fetches available template configurations
-- [ ] competitions.create mutation creates a new competition from a template
-- [ ] competitions.update mutation updates competition details
-- [ ] competitions.updateStatus mutation updates competition status (flexible transitions)
-- [ ] competitions.delete mutation deletes a competition
-- [ ] All procedures use Better Auth session to get current user_id
-- [ ] All procedures validate input using Zod schemas
-- [ ] All procedures handle errors gracefully
-- [ ] Competitions are properly associated with authenticated users
-- [ ] Template data is properly integrated into competition creation
-- [ ] tRPC router is properly exported and typed
+- [x] competitions.list query fetches all competitions for authenticated user with optional filters (status, sport_type, date_range)
+- [x] competitions.get query fetches a single competition by ID
+- [x] competitions.getTemplates query fetches available template configurations
+- [x] competitions.create mutation creates a new competition from a template
+- [x] competitions.update mutation updates competition details
+- [x] competitions.updateStatus mutation updates competition status (flexible transitions)
+- [x] competitions.delete mutation deletes a competition
+- [x] All procedures use Better Auth session to get current user_id
+- [x] All procedures validate input using Zod schemas
+- [x] All procedures handle errors gracefully
+- [x] Competitions are properly associated with authenticated users
+- [x] Template data is properly integrated into competition creation
+- [x] tRPC router is properly exported and typed
 
 ## Testing Strategy
 
@@ -79,16 +79,16 @@ Add competition procedures to the tRPC router in packages/api/src/router.ts. Use
 - [x] packages/auth (Better Auth session for user_id)
 - [x] packages/db (database operations)
 - [x] apps/app (template files)
-- [ ] packages/types (shared types if needed)
+- [x] packages/types (shared types if needed)
 
 ### Data Changes
-- [ ] No schema changes (schema already extended in slice 01)
-- [ ] No migration requirements
+- [x] No schema changes (schema already extended in slice 01)
+- [x] No migration requirements
 
 ## Documentation Impact
 
-- **API**: Document competition tRPC procedures in API documentation
-- **Implementation**: Update docs/implementation/competition-management.md with API details
+- [x] **API**: Document competition tRPC procedures in API documentation
+- [x] **Implementation**: Update docs/implementation/competition-management.md with API details
 
 ## Blocked By
 
@@ -102,11 +102,11 @@ Add competition procedures to the tRPC router in packages/api/src/router.ts. Use
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] All tests passing (integration)
-- [ ] TypeScript compilation successful
-- [ ] Coverage targets met (85%)
-- [ ] Documentation updated per impact section
-- [ ] Documentation coherence verified
-- [ ] No regressions in existing functionality
-- [ ] Code follows project conventions
+- [x] All acceptance criteria met
+- [x] All tests passing (integration)
+- [x] TypeScript compilation successful
+- [x] Coverage targets met (85%)
+- [x] Documentation updated per impact section
+- [x] Documentation coherence verified
+- [x] No regressions in existing functionality
+- [x] Code follows project conventions

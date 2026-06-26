@@ -78,7 +78,7 @@ Create JSON template files in apps/app/src/templates/ following the documented M
 ## Documentation Impact
 
 - [x] **Implementation**: Document template structure in docs/implementation/competition-management.md
-- [ ] **Frontend**: Document template usage in component documentation
+- [x] **Frontend**: Document template usage in component documentation
 
 ## Blocked By
 
