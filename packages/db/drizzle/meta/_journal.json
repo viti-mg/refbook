@@ -8,6 +8,13 @@
       "when": 1782503698981,
       "tag": "0000_fuzzy_thunderbird",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1782504887369,
+      "tag": "0001_bright_jigsaw",
+      "breakpoints": true
     }
   ]
 }
