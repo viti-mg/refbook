@@ -314,17 +314,48 @@ export type Competition = z.infer<typeof CompetitionSchema>;
 
 ## Application Setup
 
-### App: Web (TanStack Start)
+### App: Marketing Website (Vite + React)
 ```bash
 mkdir -p apps/web
 cd apps/web
-npm create @tanstack/start@latest
+npm create vite@latest . -- --template react-ts
 ```
 
 ```json
 // apps/web/package.json
 {
   "name": "@apps/web",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "start": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^5.0.0"
+  }
+}
+```
+
+### App: Referee Application (TanStack Start)
+```bash
+mkdir -p apps/app
+cd apps/app
+npm create @tanstack/start@latest
+```
+
+```json
+// apps/app/package.json
+{
+  "name": "@apps/app",
   "version": "0.0.0",
   "scripts": {
     "dev": "vinxi dev",

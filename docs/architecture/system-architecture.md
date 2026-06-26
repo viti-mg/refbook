@@ -8,10 +8,18 @@
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
-│   WEB APP        │      │   iOS APP        │      │  ANDROID APP     │
-│   (TanStack      │      │   (React Native  │      │  (React Native   │
-│    Start)        │      │    + Expo)       │      │   + Expo)        │
-└────────┬─────────┘      └────────┬─────────┘      └────────┬─────────┘
+│   MARKETING WEB  │      │   iOS APP        │      │  ANDROID APP     │
+│   (Vite + React) │      │   (React Native  │      │  (React Native   │
+│    - refbook.com)│      │    + Expo)       │      │   + Expo)        │
+└──────────────────┘      └────────┬─────────┘      └────────┬─────────┘
+
+┌──────────────────┐
+│   REFEREE APP    │
+│   (TanStack      │
+│    Start)        │
+│   - app.refbook. │
+│    com)          │
+└────────┬─────────┘
          │                          │                          │
          │ tRPC Client              │ tRPC Client              │ tRPC Client
          │ TanStack Query           │ TanStack Query           │ TanStack Query
@@ -106,7 +114,8 @@
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  apps/                                                                       │
-│  ├── web/            # TanStack Start web app                               │
+│  ├── web/            # Marketing website (Vite + React)                      │
+│  ├── app/            # Referee application (TanStack Start)                  │
 │  ├── mobile/         # React Native + Expo (iOS & Android)                  │
 │  └── api-server/     # tRPC server + WebSocket server                       │
 └─────────────────────────────────────────────────────────────────────────────┘

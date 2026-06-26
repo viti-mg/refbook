@@ -1,6 +1,6 @@
 ---
 title: "Create TanStack Start Application Foundation"
-status: "ready"
+status: "completed"
 priority: "critical"
 estimated_hours: 4
 parent_prd: "./prd.md"

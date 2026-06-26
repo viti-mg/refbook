@@ -58,14 +58,18 @@ npm run dev
 ```
 
 This will start:
-- Web application: http://localhost:3000
-- API server: http://localhost:3001
+- Marketing website: http://localhost:3000
+- Referee application: http://localhost:3001
+- API server: http://localhost:3002
 - Database: localhost:5432
 
 ### Start Specific Application
 ```bash
-# Web only
+# Marketing website only
 npm run dev --filter=@apps/web
+
+# Referee application only
+npm run dev --filter=@apps/app
 
 # API server only
 npm run dev --filter=@apps/api-server
@@ -166,7 +170,8 @@ npm audit
 ```
 refbook/
 ├── apps/
-│   ├── web/           # TanStack Start web app
+│   ├── web/           # Marketing website (Vite + React)
+│   ├── app/           # Referee application (TanStack Start)
 │   ├── mobile/        # React Native + Expo app
 │   └── api-server/    # tRPC + WebSocket server
 ├── packages/
