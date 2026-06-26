@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@packages/db": "workspace:*",
-    "better-auth": "^1.0.0"
+    "better-auth": "^1.6.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0"

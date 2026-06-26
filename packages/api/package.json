@@ -11,7 +11,7 @@
     "@packages/db": "workspace:*",
     "@packages/auth": "workspace:*",
     "@packages/shared-types": "workspace:*",
-    "@trpc/server": "^11.0.0",
+    "@trpc/server": "^11.18.0",
     "zod": "^3.23.0"
   },
   "devDependencies": {
