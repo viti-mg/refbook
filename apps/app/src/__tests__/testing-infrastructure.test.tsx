@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getTestRouter, renderWithRouter } from './utils/tanstack';
-import { Button } from '../components/ui/button';
+import { Button } from '@packages/ui';
 
 describe('Testing Infrastructure Verification', () => {
   describe('TanStack Start Testing Utilities', () => {

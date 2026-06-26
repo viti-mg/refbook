@@ -1,6 +1,4 @@
-import { Button } from './ui/button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './ui/card';
-import { Input } from './ui/input';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Input } from '@packages/ui';
 
 export function DemoCard() {
   return (

@@ -104,7 +104,7 @@
 │  ├── auth/             # Better Auth configuration                          │
 │  ├── types/            # TypeScript types shared across apps                 │
 │  ├── sync-engine/      # Offline sync & conflict resolution                 │
-│  ├── ui/               # Shared UI components (if any)                       │
+│  ├── ui/               # Shared UI components (shadcn/ui)                     │
 │  └── config/           # Shared ESLint, TSConfig, etc.                       │
 └─────────────────────────────────────────────────────────────────────────────┘
 

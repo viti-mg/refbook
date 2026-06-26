@@ -1,8 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Button } from '../components/ui/button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
-import { Input } from '../components/ui/input';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Input } from '@packages/ui';
 
 describe('UI Framework Components', () => {
   describe('Button', () => {

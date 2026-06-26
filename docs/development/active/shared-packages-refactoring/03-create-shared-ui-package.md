@@ -1,6 +1,6 @@
 ---
 title: "Create Shared UI Package"
-status: "ready"
+status: "completed"
 priority: "high"
 estimated_hours: 4
 parent_prd: "./prd.md"
@@ -22,24 +22,24 @@ Create a new `@packages/ui` shared package and move all shadcn/ui components and
 
 ## User Stories Covered
 
-- [ ] As a developer, I want shadcn/ui components to be in a shared package, so that iOS and Android apps can reuse the same UI components without duplication
-- [ ] As a developer, I want utility functions to be shared, so that the same className merging logic is used across platforms
+- [x] As a developer, I want shadcn/ui components to be in a shared package, so that iOS and Android apps can reuse the same UI components without duplication
+- [x] As a developer, I want utility functions to be shared, so that the same className merging logic is used across platforms
 
 ## Acceptance Criteria
 
-- [ ] New `packages/ui` directory created with proper package structure
-- [ ] `packages/ui/package.json` created with appropriate dependencies and workspace configuration
-- [ ] shadcn/ui components (button, card, input) moved from apps/app to packages/ui/src/components/
-- [ ] components.json configuration moved to packages/ui/
-- [ ] Utility functions (cn function) moved from apps/app/src/lib/utils.ts to packages/ui/src/lib/
-- [ ] packages/ui properly exports all components and utilities
-- [ ] apps/app package.json updated to use @packages/ui instead of direct dependencies
-- [ ] apps/app import statements updated to use @packages/ui
-- [ ] apps/app local components/ui directory removed
-- [ ] apps/app local lib/utils.ts removed or updated to re-export from shared package
-- [ ] All existing UI component tests still pass
-- [ ] TypeScript compilation successful
-- [ ] App still renders correctly with shared components
+- [x] New `packages/ui` directory created with proper package structure
+- [x] `packages/ui/package.json` created with appropriate dependencies and workspace configuration
+- [x] shadcn/ui components (button, card, input) moved from apps/app to packages/ui/src/components/
+- [x] components.json configuration moved to packages/ui/
+- [x] Utility functions (cn function) moved from apps/app/src/lib/utils.ts to packages/ui/src/lib/
+- [x] packages/ui properly exports all components and utilities
+- [x] apps/app package.json updated to use @packages/ui instead of direct dependencies
+- [x] apps/app import statements updated to use @packages/ui
+- [x] apps/app local components/ui directory removed
+- [x] apps/app local lib/utils.ts removed or updated to re-export from shared package
+- [x] All existing UI component tests still pass
+- [x] TypeScript compilation successful
+- [x] App still renders correctly with shared components
 
 ## Testing Strategy
 
@@ -72,13 +72,13 @@ Create a new `@packages/ui` shared package and move all shadcn/ui components and
 Create the new package structure with proper TypeScript configuration. Move the components and configuration files using git mv to preserve history. Update the components.json to work with the new package structure. Create proper index.ts files for exporting components. Update apps/app to remove local copies and import from the shared package. Update package.json dependencies to use the workspace package.
 
 ### Integration Points
-- [ ] packages/ui/package.json (new)
-- [ ] packages/ui/src/components/ (moved from apps/app)
-- [ ] packages/ui/src/lib/ (moved from apps/app)
-- [ ] packages/ui/components.json (moved from apps/app)
-- [ ] apps/app/package.json (dependencies updated)
-- [ ] apps/app/src/components/ (imports updated)
-- [ ] apps/app/src/lib/ (imports updated)
+- [x] packages/ui/package.json (new)
+- [x] packages/ui/src/components/ (moved from apps/app)
+- [x] packages/ui/src/lib/ (moved from apps/app)
+- [x] packages/ui/components.json (moved from apps/app)
+- [x] apps/app/package.json (dependencies updated)
+- [x] apps/app/src/components/ (imports updated)
+- [x] apps/app/src/lib/ (imports updated)
 
 ### Data Changes
 - [ ] No schema changes
@@ -97,7 +97,7 @@ Create the new package structure with proper TypeScript configuration. Move the 
 
 ## Blocked By
 
-- [ ] 02-rename-shared-types-package.md
+- [x] 02-rename-shared-types-package.md
 
 ## Dependencies
 
@@ -105,11 +105,11 @@ Create the new package structure with proper TypeScript configuration. Move the 
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] All tests passing (unit + integration)
-- [ ] TypeScript compilation successful
-- [ ] Coverage targets met
-- [ ] Documentation updated per impact section
-- [ ] Documentation coherence verified
-- [ ] No regressions in existing functionality
-- [ ] Code follows project conventions
+- [x] All acceptance criteria met
+- [x] All tests passing (unit + integration)
+- [x] TypeScript compilation successful
+- [x] Coverage targets met
+- [x] Documentation updated per impact section
+- [x] Documentation coherence verified
+- [x] No regressions in existing functionality
+- [x] Code follows project conventions
