@@ -198,10 +198,12 @@
 ## Security Architecture
 
 ### Authentication
-- **Better Auth**: Session-based authentication
+- **Better Auth**: Session-based authentication with email/password
 - **Secure Cookies**: HttpOnly, Secure, SameSite
 - **Token Refresh**: Automatic token refresh
 - **Multi-Device**: Sessions work across devices
+- **Database Integration**: Drizzle adapter for PostgreSQL
+- **Type Safety**: End-to-end TypeScript types for auth operations
 
 ### Authorization
 - **Custom Model**: Organization + Competition roles

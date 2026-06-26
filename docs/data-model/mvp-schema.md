@@ -8,6 +8,8 @@ The MVP database schema focuses on the core functionality needed for solo refere
 
 ## Better Auth Tables (Managed by Better Auth)
 
+**Implementation Status**: ✅ Implemented - Better Auth is configured and schema is defined in `packages/db/src/schema.ts`. Migration file generated in `packages/db/drizzle/0000_fuzzy_thunderbird.sql`.
+
 ### users
 ```sql
 - id: text (primary key)

@@ -5,13 +5,18 @@
   "types": "./index.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
+    "@packages/config": "workspace:*",
     "@packages/db": "workspace:*",
     "better-auth": "^1.6.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0"
   }
 }

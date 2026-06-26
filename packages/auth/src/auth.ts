@@ -1,6 +1,9 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from '@packages/db';
+import { getServerEnv } from '@packages/config';
+
+const env = getServerEnv();
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -8,5 +11,11 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: false, // MVP: disable email verification for simplicity
+  },
+  secret: env.BETTER_AUTH_SECRET,
+  baseURL: env.BETTER_AUTH_URL,
+  advanced: {
+    generateId: () => crypto.randomUUID(), // Use UUID for ID generation
   },
 });
