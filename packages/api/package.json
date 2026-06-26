@@ -1,8 +1,8 @@
 {
   "name": "@packages/api",
   "version": "0.0.0",
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch"
@@ -11,10 +11,17 @@
     "@packages/auth": "workspace:*",
     "@packages/db": "workspace:*",
     "@packages/types": "workspace:*",
+    "@tanstack/react-query": "^5.101.1",
+    "@tanstack/react-query-devtools": "^5.101.1",
+    "@trpc/client": "^11.18.0",
+    "@trpc/react-query": "^11.18.0",
     "@trpc/server": "^11.18.0",
+    "react": "^19.2.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "typescript": "^5.0.0"
   }
 }

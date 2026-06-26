@@ -3,7 +3,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { TRPCProvider } from '../lib/trpc-provider';
+import { TRPCProvider } from '@packages/api';
 
 import appCss from '../styles.css?url';
 

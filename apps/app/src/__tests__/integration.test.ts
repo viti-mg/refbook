@@ -66,9 +66,10 @@ describe('Monorepo Package Integration Tests', () => {
   });
 
   it('should have tRPC client dependencies installed', () => {
-    // Verify that tRPC client dependencies are installed
-    expect(packageJson.dependencies['@trpc/client']).toBeDefined();
-    expect(packageJson.dependencies['@trpc/react-query']).toBeDefined();
+    // Verify that tRPC client dependencies are now in @packages/api
+    const apiPackageJson = JSON.parse(readFileSync(join(__dirname, '../../../../packages/api/package.json'), 'utf-8'));
+    expect(apiPackageJson.dependencies['@trpc/client']).toBeDefined();
+    expect(apiPackageJson.dependencies['@trpc/react-query']).toBeDefined();
   });
 
   it('should have TanStack Query installed', () => {
