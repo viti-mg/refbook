@@ -1,6 +1,6 @@
 ---
 title: "Shared Packages Refactoring"
-status: "active"
+status: "completed"
 created: "2026-06-26"
 author: "user/devin"
 estimated_slices: 5

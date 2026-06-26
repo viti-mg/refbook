@@ -1,6 +1,6 @@
 ---
 title: "Extend API Package with Client Setup"
-status: "ready"
+status: "completed"
 priority: "medium"
 estimated_hours: 3
 parent_prd: "./prd.md"

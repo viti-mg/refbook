@@ -5,26 +5,20 @@
 ```
 refbook/
 ├── apps/
-│   ├── web/                    # TanStack Start web application
-│   │   ├── app/                # TanStack Start routes and pages
+│   ├── app/                    # TanStack Start web application
+│   │   ├── src/                # TanStack Start routes and pages
 │   │   ├── components/         # Web-specific components
 │   │   ├── lib/                # Web utilities and helpers
 │   │   └── public/             # Static assets
-│   ├── mobile/                 # React Native + Expo application
-│   │   ├── app/                # React Native screens
-│   │   ├── components/         # Mobile-specific components
-│   │   ├── assets/             # Mobile assets (images, fonts)
-│   │   └── lib/                # Mobile utilities and helpers
-│   └── api-server/             # tRPC server + WebSocket server
-│       ├── src/                # Server source code
-│       ├── server.ts           # Server entry point
-│       └── websocket.ts        # WebSocket server
+│   ├── mobile/                 # React Native + Expo application (placeholder)
+│   └── api-server/             # tRPC server + WebSocket server (placeholder)
 ├── packages/
-│   ├── api/                    # Shared tRPC router and server logic
+│   ├── api/                    # Shared tRPC router, client setup, and server logic
 │   │   ├── src/
-│   │   │   ├── router/         # tRPC router definition
-│   │   │   ├── procedures/     # tRPC procedures (queries, mutations)
-│   │   │   └── middleware/     # tRPC middleware
+│   │   │   ├── router.ts       # tRPC router definition
+│   │   │   ├── client.ts       # tRPC client setup
+│   │   │   ├── provider.tsx    # tRPC React provider component
+│   │   │   └── index.ts
 │   │   └── index.ts
 │   ├── db/                     # Drizzle ORM schema and migrations
 │   │   ├── src/
@@ -44,7 +38,7 @@ refbook/
 │   │   │   ├── api/            # API-related types
 │   │   │   └── index.ts
 │   │   └── index.ts
-│   ├── sync-engine/            # Offline sync and conflict resolution
+│   ├── sync-engine/            # Offline sync and conflict resolution (placeholder for future mobile sync)
 │   │   ├── src/
 │   │   │   ├── sync/           # Sync logic
 │   │   │   ├── conflict/       # Conflict resolution
@@ -73,12 +67,11 @@ refbook/
 - **tanstack-start**: Framework
 - **@tanstack/react-query**: State management
 - **@tanstack/react-form**: Form management
-- **@packages/api**: Shared tRPC client
+- **@packages/api**: Shared tRPC router and client
 - **@packages/auth**: Auth client
 - **@packages/config**: Environment validation
 - **@packages/types**: Shared types
-- **@packages/ui**: Shared UI components
-- **shadcn-ui**: UI components
+- **@packages/ui**: Shared UI components (shadcn/ui)
 
 ### apps/mobile
 - **expo**: React Native framework
@@ -104,6 +97,10 @@ refbook/
 
 ### packages/api
 - **@trpc/server**: tRPC server
+- **@trpc/client**: tRPC client
+- **@trpc/react-query**: tRPC React integration
+- **@tanstack/react-query**: React Query for state management
+- **react**: React for provider component
 - **@packages/db**: Database access
 - **@packages/auth**: Authentication
 - **@packages/types**: Shared types
