@@ -1,8 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/auth/login')({
   component: Login,
-})
+});
 
 function Login() {
   return (
@@ -17,5 +17,5 @@ function Login() {
         </p>
       </section>
     </main>
-  )
+  );
 }

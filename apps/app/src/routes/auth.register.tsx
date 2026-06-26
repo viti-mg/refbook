@@ -1,8 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/auth/register')({
   component: Register,
-})
+});
 
 function Register() {
   return (
@@ -17,5 +17,5 @@ function Register() {
         </p>
       </section>
     </main>
-  )
+  );
 }

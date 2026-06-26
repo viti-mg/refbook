@@ -1,8 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/competitions')({
   component: Competitions,
-})
+});
 
 function Competitions() {
   return (
@@ -17,5 +17,5 @@ function Competitions() {
         </p>
       </section>
     </main>
-  )
+  );
 }

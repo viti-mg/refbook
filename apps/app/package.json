@@ -10,13 +10,19 @@
     "generate-routes": "tsr generate",
     "build": "vite build",
     "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:debug": "playwright test --debug"
+    "test:e2e:debug": "playwright test --debug",
+    "clean": "rm -rf .vinxi dist node_modules/.vite"
   },
   "dependencies": {
     "@packages/api": "workspace:*",
@@ -47,6 +53,7 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
+    "@eslint/js": "^9.18.0",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "latest",
@@ -59,8 +66,14 @@
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.1",
     "@vitest/coverage-v8": "^4.1.9",
+    "eslint": "^9.18.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
     "jsdom": "^28.1.0",
+    "prettier": "^3.4.2",
     "typescript": "^6.0.2",
+    "typescript-eslint": "^8.19.1",
     "vite": "^8.0.0",
     "vitest": "^4.1.5"
   }

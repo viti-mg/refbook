@@ -8,159 +8,141 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as CompetitionsRouteImport } from './routes/competitions'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as CompetitionsIdRouteImport } from './routes/competitions.$id'
-import { Route as AuthRegisterRouteImport } from './routes/auth.register'
-import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as rootRouteImport } from './routes/__root';
+import { Route as CompetitionsRouteImport } from './routes/competitions';
+import { Route as IndexRouteImport } from './routes/index';
+import { Route as CompetitionsIdRouteImport } from './routes/competitions.$id';
+import { Route as AuthRegisterRouteImport } from './routes/auth.register';
+import { Route as AuthLoginRouteImport } from './routes/auth.login';
 
 const CompetitionsRoute = CompetitionsRouteImport.update({
   id: '/competitions',
   path: '/competitions',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const CompetitionsIdRoute = CompetitionsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => CompetitionsRoute,
-} as any)
+} as any);
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
   id: '/auth/register',
   path: '/auth/register',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthLoginRoute = AuthLoginRouteImport.update({
   id: '/auth/login',
   path: '/auth/login',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/competitions': typeof CompetitionsRouteWithChildren
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/register': typeof AuthRegisterRoute
-  '/competitions/$id': typeof CompetitionsIdRoute
+  '/': typeof IndexRoute;
+  '/competitions': typeof CompetitionsRouteWithChildren;
+  '/auth/login': typeof AuthLoginRoute;
+  '/auth/register': typeof AuthRegisterRoute;
+  '/competitions/$id': typeof CompetitionsIdRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/competitions': typeof CompetitionsRouteWithChildren
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/register': typeof AuthRegisterRoute
-  '/competitions/$id': typeof CompetitionsIdRoute
+  '/': typeof IndexRoute;
+  '/competitions': typeof CompetitionsRouteWithChildren;
+  '/auth/login': typeof AuthLoginRoute;
+  '/auth/register': typeof AuthRegisterRoute;
+  '/competitions/$id': typeof CompetitionsIdRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/competitions': typeof CompetitionsRouteWithChildren
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/register': typeof AuthRegisterRoute
-  '/competitions/$id': typeof CompetitionsIdRoute
+  __root__: typeof rootRouteImport;
+  '/': typeof IndexRoute;
+  '/competitions': typeof CompetitionsRouteWithChildren;
+  '/auth/login': typeof AuthLoginRoute;
+  '/auth/register': typeof AuthRegisterRoute;
+  '/competitions/$id': typeof CompetitionsIdRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/competitions'
-    | '/auth/login'
-    | '/auth/register'
-    | '/competitions/$id'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/competitions'
-    | '/auth/login'
-    | '/auth/register'
-    | '/competitions/$id'
-  id:
-    | '__root__'
-    | '/'
-    | '/competitions'
-    | '/auth/login'
-    | '/auth/register'
-    | '/competitions/$id'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: '/' | '/competitions' | '/auth/login' | '/auth/register' | '/competitions/$id';
+  fileRoutesByTo: FileRoutesByTo;
+  to: '/' | '/competitions' | '/auth/login' | '/auth/register' | '/competitions/$id';
+  id: '__root__' | '/' | '/competitions' | '/auth/login' | '/auth/register' | '/competitions/$id';
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  CompetitionsRoute: typeof CompetitionsRouteWithChildren
-  AuthLoginRoute: typeof AuthLoginRoute
-  AuthRegisterRoute: typeof AuthRegisterRoute
+  IndexRoute: typeof IndexRoute;
+  CompetitionsRoute: typeof CompetitionsRouteWithChildren;
+  AuthLoginRoute: typeof AuthLoginRoute;
+  AuthRegisterRoute: typeof AuthRegisterRoute;
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/competitions': {
-      id: '/competitions'
-      path: '/competitions'
-      fullPath: '/competitions'
-      preLoaderRoute: typeof CompetitionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/competitions';
+      path: '/competitions';
+      fullPath: '/competitions';
+      preLoaderRoute: typeof CompetitionsRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/competitions/$id': {
-      id: '/competitions/$id'
-      path: '/$id'
-      fullPath: '/competitions/$id'
-      preLoaderRoute: typeof CompetitionsIdRouteImport
-      parentRoute: typeof CompetitionsRoute
-    }
+      id: '/competitions/$id';
+      path: '/$id';
+      fullPath: '/competitions/$id';
+      preLoaderRoute: typeof CompetitionsIdRouteImport;
+      parentRoute: typeof CompetitionsRoute;
+    };
     '/auth/register': {
-      id: '/auth/register'
-      path: '/auth/register'
-      fullPath: '/auth/register'
-      preLoaderRoute: typeof AuthRegisterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/auth/register';
+      path: '/auth/register';
+      fullPath: '/auth/register';
+      preLoaderRoute: typeof AuthRegisterRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/auth/login': {
-      id: '/auth/login'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/auth/login';
+      path: '/auth/login';
+      fullPath: '/auth/login';
+      preLoaderRoute: typeof AuthLoginRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
   }
 }
 
 interface CompetitionsRouteChildren {
-  CompetitionsIdRoute: typeof CompetitionsIdRoute
+  CompetitionsIdRoute: typeof CompetitionsIdRoute;
 }
 
 const CompetitionsRouteChildren: CompetitionsRouteChildren = {
   CompetitionsIdRoute: CompetitionsIdRoute,
-}
+};
 
-const CompetitionsRouteWithChildren = CompetitionsRoute._addFileChildren(
-  CompetitionsRouteChildren,
-)
+const CompetitionsRouteWithChildren = CompetitionsRoute._addFileChildren(CompetitionsRouteChildren);
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompetitionsRoute: CompetitionsRouteWithChildren,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
+import type { getRouter } from './router.tsx';
+import type { createStart } from '@tanstack/react-start';
 declare module '@tanstack/react-start' {
   interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
+    ssr: true;
+    router: Awaited<ReturnType<typeof getRouter>>;
   }
 }

@@ -1,7 +1,7 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { DemoCard } from '../components/DemoCard'
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { DemoCard } from '../components/DemoCard';
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({ component: App });
 
 function App() {
   return (
@@ -14,7 +14,8 @@ function App() {
           Manage referee operations with confidence.
         </h1>
         <p className="mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] sm:text-lg">
-          A comprehensive tool for referees to manage competitions, track cards, and handle match administration efficiently.
+          A comprehensive tool for referees to manage competitions, track cards, and handle match
+          administration efficiently.
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
@@ -34,31 +35,17 @@ function App() {
 
       <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          [
-            'Competition Management',
-            'Organize and track all your refereeing competitions.',
-          ],
-          [
-            'Card Tracking',
-            'Record yellow and red cards with detailed context.',
-          ],
-          [
-            'Match Administration',
-            'Handle match schedules, assignments, and reports.',
-          ],
-          [
-            'Secure & Fast',
-            'Built with modern security and performance best practices.',
-          ],
+          ['Competition Management', 'Organize and track all your refereeing competitions.'],
+          ['Card Tracking', 'Record yellow and red cards with detailed context.'],
+          ['Match Administration', 'Handle match schedules, assignments, and reports.'],
+          ['Secure & Fast', 'Built with modern security and performance best practices.'],
         ].map(([title, desc], index) => (
           <article
             key={title}
             className="island-shell feature-card rise-in rounded-2xl p-5"
             style={{ animationDelay: `${index * 90 + 80}ms` }}
           >
-            <h2 className="mb-2 text-base font-semibold text-[var(--sea-ink)]">
-              {title}
-            </h2>
+            <h2 className="mb-2 text-base font-semibold text-[var(--sea-ink)]">{title}</h2>
             <p className="m-0 text-sm text-[var(--sea-ink-soft)]">{desc}</p>
           </article>
         ))}
@@ -68,14 +55,19 @@ function App() {
         <p className="island-kicker mb-2">Getting Started</p>
         <ul className="m-0 list-disc space-y-2 pl-5 text-sm text-[var(--sea-ink-soft)]">
           <li>
-            <Link to="/auth/register" className="text-[var(--lagoon-deep)] underline">Create an account</Link> to get started with RefBook.
+            <Link to="/auth/register" className="text-[var(--lagoon-deep)] underline">
+              Create an account
+            </Link>{' '}
+            to get started with RefBook.
           </li>
           <li>
-            Browse <Link to="/competitions" className="text-[var(--lagoon-deep)] underline">competitions</Link> to find matches to referee.
+            Browse{' '}
+            <Link to="/competitions" className="text-[var(--lagoon-deep)] underline">
+              competitions
+            </Link>{' '}
+            to find matches to referee.
           </li>
-          <li>
-            Track your performance and manage your refereeing schedule.
-          </li>
+          <li>Track your performance and manage your refereeing schedule.</li>
         </ul>
       </section>
 
@@ -86,5 +78,5 @@ function App() {
         </div>
       </section>
     </main>
-  )
+  );
 }

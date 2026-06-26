@@ -1,6 +1,6 @@
-import { Button } from './ui/button'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './ui/card'
-import { Input } from './ui/input'
+import { Button } from './ui/button';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './ui/card';
+import { Input } from './ui/input';
 
 export function DemoCard() {
   return (
@@ -24,5 +24,5 @@ export function DemoCard() {
         <Button variant="outline">Cancel</Button>
       </CardFooter>
     </Card>
-  )
+  );
 }

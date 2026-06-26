@@ -1,6 +1,6 @@
 ---
 title: "Configure Build System and Deployment"
-status: "ready"
+status: "completed"
 priority: "high"
 estimated_hours: 3
 parent_prd: "./prd.md"

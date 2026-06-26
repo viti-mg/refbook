@@ -1,7 +1,7 @@
 // Tests for environment variable configuration
 // These tests verify that environment variables are properly configured and secured
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {
   getServerEnv,
   getClientEnv,

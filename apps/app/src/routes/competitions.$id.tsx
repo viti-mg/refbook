@@ -1,11 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/competitions/$id')({
   component: CompetitionDetail,
-})
+});
 
 function CompetitionDetail() {
-  const { id } = Route.useParams()
+  const { id } = Route.useParams();
   return (
     <main className="page-wrap px-4 py-12">
       <section className="island-shell rounded-2xl p-6 sm:p-8">
@@ -18,5 +18,5 @@ function CompetitionDetail() {
         </p>
       </section>
     </main>
-  )
+  );
 }

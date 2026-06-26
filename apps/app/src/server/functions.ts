@@ -3,11 +3,10 @@
 
 import { createServerFn } from '@tanstack/react-start';
 import { z } from 'zod';
-import { db } from './db';
 
 // Middleware for error handling
-const withErrorHandler = <T extends (...args: any[]) => Promise<any>>(fn: T): T => {
-  return (async (...args: any[]) => {
+const withErrorHandler = <T extends (...args: unknown[]) => Promise<unknown>>(fn: T): T => {
+  return (async (...args: unknown[]) => {
     try {
       return await fn(...args);
     } catch (error) {
@@ -21,8 +20,8 @@ const withErrorHandler = <T extends (...args: any[]) => Promise<any>>(fn: T): T 
 };
 
 // Middleware for authentication checks (placeholder - will be integrated with @packages/auth)
-const withAuthCheck = <T extends (...args: any[]) => Promise<any>>(fn: T): T => {
-  return (async (...args: any[]) => {
+const withAuthCheck = <T extends (...args: unknown[]) => Promise<unknown>>(fn: T): T => {
+  return (async (...args: unknown[]) => {
     // TODO: Integrate with @packages/auth for actual authentication
     // For now, this is a placeholder that will be enhanced when auth is fully implemented
     const authHeader = args[0]?.headers?.authorization;
@@ -34,20 +33,19 @@ const withAuthCheck = <T extends (...args: any[]) => Promise<any>>(fn: T): T => 
 };
 
 // Server function to get competitions
-export const getCompetitionsServer = createServerFn()
-  .handler(
-    withErrorHandler(async () => {
-      // This will be implemented when we add actual database queries
-      // For now, return empty array
-      return [];
-    })
-  );
+export const getCompetitionsServer = createServerFn().handler(
+  withErrorHandler(async () => {
+    // This will be implemented when we add actual database queries
+    // For now, return empty array
+    return [];
+  })
+);
 
 // Server function to get a single competition by ID
 export const getCompetitionByIdServer = createServerFn()
   .validator(z.object({ id: z.string() }))
   .handler(
-    withErrorHandler(async ({ data }) => {
+    withErrorHandler(async () => {
       // This will be implemented when we add actual database queries
       // For now, throw an error to simulate not found
       throw new Error('Competition not found');
@@ -98,7 +96,7 @@ export const deleteCompetitionServer = createServerFn({ method: 'POST' })
   .validator(z.object({ id: z.string() }))
   .handler(
     withErrorHandler(
-      withAuthCheck(async ({ data }) => {
+      withAuthCheck(async () => {
         // This will be implemented when we add actual database queries
         // For now, return success
         return { success: true };
