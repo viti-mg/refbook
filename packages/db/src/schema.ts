@@ -48,7 +48,11 @@ export const competitions = pgTable('competitions', {
   name: text('name').notNull(),
   sportType: text('sport_type').notNull(),
   status: text('status').notNull(),
+  scheduledStart: timestamp('scheduled_start').notNull(),
+  actualStart: timestamp('actual_start'),
+  actualEnd: timestamp('actual_end'),
+  location: text('location'),
+  notes: text('notes'),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
-  version: serial('version').default(1),
 });
