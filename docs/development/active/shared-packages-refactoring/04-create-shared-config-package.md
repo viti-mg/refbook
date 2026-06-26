@@ -1,6 +1,6 @@
 ---
 title: "Create Shared Config Package"
-status: "ready"
+status: "completed"
 priority: "medium"
 estimated_hours: 3
 parent_prd: "./prd.md"
@@ -26,16 +26,16 @@ Create a new `@packages/config` shared package and move environment validation l
 
 ## Acceptance Criteria
 
-- [ ] New `packages/config` directory created with proper package structure
-- [ ] `packages/config/package.json` created with appropriate dependencies (zod) and workspace configuration
-- [ ] Environment validation logic moved from apps/app/src/lib/env.ts to packages/config/src/env.ts
-- [ ] packages/config properly exports all environment validation functions and types
-- [ ] apps/app package.json updated to use @packages/config instead of local env.ts
-- [ ] apps/app import statements updated to use @packages/config for environment validation
-- [ ] apps/app local lib/env.ts removed or updated to re-export from shared package
-- [ ] All existing environment-related tests still pass
-- [ ] TypeScript compilation successful
-- [ ] App still validates environment variables correctly with shared package
+- [x] New `packages/config` directory created with proper package structure
+- [x] `packages/config/package.json` created with appropriate dependencies (zod) and workspace configuration
+- [x] Environment validation logic moved from apps/app/src/lib/env.ts to packages/config/src/env.ts
+- [x] packages/config properly exports all environment validation functions and types
+- [x] apps/app package.json updated to use @packages/config instead of local env.ts
+- [x] apps/app import statements updated to use @packages/config for environment validation
+- [x] apps/app local lib/env.ts removed or updated to re-export from shared package
+- [x] All existing environment-related tests still pass
+- [x] TypeScript compilation successful
+- [x] App still validates environment variables correctly with shared package
 
 ## Testing Strategy
 
@@ -68,11 +68,11 @@ Create a new `@packages/config` shared package and move environment validation l
 Create the new package structure with proper TypeScript configuration. Move the environment validation logic using git mv to preserve history. Ensure the package has zod as a dependency. Create proper index.ts files for exporting environment functions and types. Update apps/app to remove local env.ts and import from the shared package. Update package.json dependencies to use the workspace package.
 
 ### Integration Points
-- [ ] packages/config/package.json (new)
-- [ ] packages/config/src/env.ts (moved from apps/app)
-- [ ] apps/app/package.json (dependencies updated)
-- [ ] apps/app/src/lib/ (imports updated)
-- [ ] apps/app/src/server/ (if it uses environment validation)
+- [x] packages/config/package.json (new)
+- [x] packages/config/src/env.ts (moved from apps/app)
+- [x] apps/app/package.json (dependencies updated)
+- [x] apps/app/src/lib/ (imports updated)
+- [x] apps/app/src/server/ (if it uses environment validation)
 
 ### Data Changes
 - [ ] No schema changes
@@ -99,11 +99,11 @@ Create the new package structure with proper TypeScript configuration. Move the 
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] All tests passing (unit + integration)
-- [ ] TypeScript compilation successful
-- [ ] Coverage targets met
-- [ ] Documentation updated per impact section
-- [ ] Documentation coherence verified
-- [ ] No regressions in existing functionality
-- [ ] Code follows project conventions
+- [x] All acceptance criteria met
+- [x] All tests passing (unit + integration)
+- [x] TypeScript compilation successful
+- [x] Coverage targets met
+- [x] Documentation updated per impact section
+- [x] Documentation coherence verified
+- [x] No regressions in existing functionality
+- [x] Code follows project conventions

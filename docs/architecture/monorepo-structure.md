@@ -56,9 +56,10 @@ refbook/
 │   │   │   ├── components/     # Shared components
 │   │   │   └── index.ts
 │   │   └── index.ts
-│   └── config/                 # Shared configuration
-│       ├── eslint/             # ESLint configuration
-│       ├── typescript/         # TypeScript configuration
+│   ├── config/                 # Shared configuration and environment validation
+│       ├── src/
+│       │   ├── env.ts          # Environment variable validation
+│       │   └── index.ts
 │       └── index.ts
 ├── docs/                       # Documentation
 ├── turbo.json                  # Turborepo configuration
@@ -74,6 +75,7 @@ refbook/
 - **@tanstack/react-form**: Form management
 - **@packages/api**: Shared tRPC client
 - **@packages/auth**: Auth client
+- **@packages/config**: Environment validation
 - **@packages/types**: Shared types
 - **@packages/ui**: Shared UI components
 - **shadcn-ui**: UI components
@@ -85,6 +87,7 @@ refbook/
 - **@tanstack/react-form**: Form management
 - **@packages/api**: Shared tRPC client
 - **@packages/auth**: Auth client
+- **@packages/config**: Environment validation
 - **@packages/types**: Shared types
 - **@packages/sync-engine**: Sync logic
 - **expo-sqlite**: Local database
@@ -92,6 +95,7 @@ refbook/
 ### apps/api-server
 - **@tanstack/react-query**: Server-side queries
 - **@packages/api**: tRPC router
+- **@packages/config**: Environment validation
 - **@packages/db**: Database access
 - **@packages/auth**: Auth server
 - **@packages/types**: Shared types
@@ -126,6 +130,10 @@ refbook/
 - **react**: React
 - **@tanstack/react-form**: Form integration
 - **shadcn-ui**: Component library
+
+### packages/config
+- **zod**: Runtime validation
+- **typescript**: Type definitions
 
 ## Turborepo Configuration
 

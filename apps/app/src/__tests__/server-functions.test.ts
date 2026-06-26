@@ -53,7 +53,7 @@ describe('Server Functions', () => {
     });
 
     it('should use environment variables for database connection', async () => {
-      const envModule = await import('#/lib/env');
+      const envModule = await import('@packages/config');
       expect(envModule).toHaveProperty('getServerEnv');
       expect(typeof envModule.getServerEnv).toBe('function');
     });

@@ -10,7 +10,7 @@ import {
   isTestFn,
   type ServerEnv,
   type ClientEnv,
-} from '#/lib/env';
+} from '@packages/config';
 
 describe('Environment Variables', () => {
   const originalEnv = process.env;

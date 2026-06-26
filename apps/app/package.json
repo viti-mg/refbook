@@ -27,6 +27,7 @@
   "dependencies": {
     "@packages/api": "workspace:*",
     "@packages/auth": "workspace:*",
+    "@packages/config": "workspace:*",
     "@packages/db": "workspace:*",
     "@packages/types": "workspace:*",
     "@packages/ui": "workspace:*",

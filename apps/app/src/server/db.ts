@@ -2,7 +2,7 @@
 // This file can only be imported in server-side code (server functions, API routes)
 // Importing this in client components will cause a build error
 
-import { getServerEnv } from '#/lib/env';
+import { getServerEnv } from '@packages/config';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 

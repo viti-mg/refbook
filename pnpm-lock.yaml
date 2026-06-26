@@ -36,6 +36,9 @@ importers:
       '@packages/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@packages/config':
+        specifier: workspace:*
+        version: link:../../packages/config
       '@packages/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -197,6 +200,16 @@ importers:
       better-auth:
         specifier: ^1.6.0
         version: 1.6.22(@tanstack/react-start@1.168.26(esbuild@0.28.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(vite@8.1.0(@types/node@22.20.0)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.4)))(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(kysely@0.29.2)(postgres@3.4.9))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(solid-js@1.9.13)(vitest@4.1.9)
+    devDependencies:
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/config:
+    dependencies:
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       typescript:
         specifier: ^5.0.0
