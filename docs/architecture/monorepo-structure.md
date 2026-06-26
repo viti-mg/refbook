@@ -68,7 +68,7 @@ refbook/
 
 ## Package Dependencies
 
-### apps/web
+### apps/app
 - **tanstack-start**: Framework
 - **@tanstack/react-query**: State management
 - **@tanstack/react-form**: Form management

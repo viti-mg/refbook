@@ -58,16 +58,12 @@ npm run dev
 ```
 
 This will start:
-- Marketing website: http://localhost:3000
-- Referee application: http://localhost:3001
-- API server: http://localhost:3002
+- Referee application: http://localhost:3000
+- API server: http://localhost:3001
 - Database: localhost:5432
 
 ### Start Specific Application
 ```bash
-# Marketing website only
-npm run dev --filter=@apps/web
-
 # Referee application only
 npm run dev --filter=@apps/app
 

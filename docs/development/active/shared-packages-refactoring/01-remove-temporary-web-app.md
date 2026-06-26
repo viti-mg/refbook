@@ -1,6 +1,6 @@
 ---
 title: "Remove Temporary Web App"
-status: "ready"
+status: "completed"
 priority: "high"
 estimated_hours: 1
 parent_prd: "./prd.md"

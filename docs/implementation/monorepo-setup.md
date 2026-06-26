@@ -314,37 +314,6 @@ export type Competition = z.infer<typeof CompetitionSchema>;
 
 ## Application Setup
 
-### App: Marketing Website (Vite + React)
-```bash
-mkdir -p apps/web
-cd apps/web
-npm create vite@latest . -- --template react-ts
-```
-
-```json
-// apps/web/package.json
-{
-  "name": "@apps/web",
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "start": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "typescript": "^5.0.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^5.0.0"
-  }
-}
-```
-
 ### App: Referee Application (TanStack Start)
 ```bash
 mkdir -p apps/app
@@ -779,7 +748,7 @@ npm install --filter=@packages/db
 npm run dev
 
 # Start specific application
-npm run dev --filter=@apps/web
+npm run dev --filter=@apps/app
 
 # Start specific package in watch mode
 npm run dev --filter=@packages/api
@@ -794,7 +763,7 @@ npm run build
 npm run build --filter=@packages/api
 
 # Build specific app
-npm run build --filter=@apps/web
+npm run build --filter=@apps/app
 ```
 
 ### Testing
@@ -815,7 +784,7 @@ npm run test --watch
 npm run lint
 
 # Lint specific package
-npm run lint --filter=@apps/web
+npm run lint --filter=@apps/app
 
 # Auto-fix linting issues
 npm run lint --fix
