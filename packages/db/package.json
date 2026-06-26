@@ -8,15 +8,17 @@
     "dev": "tsc --watch",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
-    "push": "drizzle-kit push"
+    "push": "drizzle-kit push",
+    "test": "vitest"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.0",
     "postgres": "^3.4.0"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
     "drizzle-kit": "^0.31.0",
     "typescript": "^5.0.0",
-    "@types/node": "^20.0.0"
+    "vitest": "^4.1.9"
   }
 }
