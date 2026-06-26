@@ -367,6 +367,7 @@ npm create @tanstack/start@latest
   "dependencies": {
     "@packages/api": "workspace:*",
     "@packages/auth": "workspace:*",
+    "@packages/db": "workspace:*",
     "@packages/shared-types": "workspace:*",
     "@trpc/client": "^11.0.0",
     "@trpc/react-query": "^11.0.0",
@@ -375,7 +376,10 @@ npm create @tanstack/start@latest
     "@tanstack/react-router": "^1.0.0",
     "@tanstack/react-start": "^1.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "drizzle-orm": "^0.45.0",
+    "postgres": "^3.4.0",
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@tanstack/router-plugin": "^1.0.0",
@@ -384,10 +388,150 @@ npm create @tanstack/start@latest
     "@types/react-dom": "^19.0.0",
     "typescript": "^6.0.0",
     "vite": "^8.0.0",
-    "vitest": "^4.0.0"
+    "vitest": "^4.0.0",
+    "@vitest/coverage-v8": "^4.1.9"
   }
 }
 ```
+
+### Server Functions and Environment Configuration
+
+Server functions in TanStack Start provide type-safe RPC calls between client and server. They are configured in the `src/server/` directory with proper middleware for error handling and authentication.
+
+#### Server Functions Setup
+
+```typescript
+// src/server/functions.ts
+import { createServerFn } from '@tanstack/react-start';
+import { z } from 'zod';
+import { db } from './db';
+
+// Middleware for error handling
+const withErrorHandler = <T extends (...args: any[]) => Promise<any>>(fn: T): T => {
+  return (async (...args: any[]) => {
+    try {
+      return await fn(...args);
+    } catch (error) {
+      console.error('Server function error:', error);
+      if (error instanceof Error) {
+        throw new Error(`Server error: ${error.message}`);
+      }
+      throw new Error('An unknown error occurred');
+    }
+  }) as T;
+};
+
+// Middleware for authentication checks
+const withAuthCheck = <T extends (...args: any[]) => Promise<any>>(fn: T): T => {
+  return (async (...args: any[]) => {
+    const authHeader = args[0]?.headers?.authorization;
+    if (!authHeader) {
+      throw new Error('Unauthorized: No authentication token provided');
+    }
+    return await fn(...args);
+  }) as T;
+};
+
+// Example server function
+export const getCompetitionsServer = createServerFn()
+  .handler(
+    withErrorHandler(async () => {
+      const result = await db.select().from(competitions);
+      return result;
+    })
+  );
+```
+
+#### Database Access
+
+Server-only database access is configured in `src/server/db.ts` with lazy initialization to avoid import issues during testing:
+
+```typescript
+// src/server/db.ts
+import { getServerEnv } from '#/lib/env';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+
+// Lazy database initialization
+let dbInstance: ReturnType<typeof drizzle> | null = null;
+
+export function getDb() {
+  if (!dbInstance) {
+    const env = getServerEnv();
+    const connectionString = env.DATABASE_URL;
+    const client = postgres(connectionString);
+    dbInstance = drizzle(client);
+  }
+  return dbInstance;
+}
+
+export const db = new Proxy({} as never, {
+  get(_target, prop) {
+    return getDb()[prop as keyof ReturnType<typeof getDb>];
+  },
+});
+```
+
+#### Environment Variables
+
+Environment variables are configured using TanStack Start's system with TypeScript validation for type safety:
+
+```typescript
+// src/lib/env.ts
+import { z } from 'zod';
+
+// Server-only environment variables
+const serverEnvSchema = z.object({
+  DATABASE_URL: z.string().url(),
+  BETTER_AUTH_SECRET: z.string().min(32),
+  BETTER_AUTH_URL: z.string().url(),
+  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+  APP_URL: z.string().url(),
+});
+
+// Client-safe environment variables
+const clientEnvSchema = z.object({
+  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+  APP_URL: z.string().url(),
+});
+
+export function getServerEnv() {
+  return serverEnvSchema.parse({
+    DATABASE_URL: process.env.DATABASE_URL,
+    BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+    NODE_ENV: process.env.NODE_ENV,
+    APP_URL: process.env.APP_URL,
+  });
+}
+
+export function getClientEnv() {
+  return clientEnvSchema.parse({
+    NODE_ENV: process.env.NODE_ENV,
+    APP_URL: process.env.APP_URL,
+  });
+}
+```
+
+Environment files are created in the app directory:
+
+```bash
+# .env.development
+DATABASE_URL=postgres://localhost:5432/refbook
+BETTER_AUTH_SECRET=dev-secret-change-in-production
+BETTER_AUTH_URL=http://localhost:3000
+NODE_ENV=development
+APP_URL=http://localhost:3000
+
+# .env.production
+DATABASE_URL=postgres://user:password@localhost:5432/refbook
+BETTER_AUTH_SECRET=CHANGE_THIS_TO_A_SECURE_RANDOM_STRING
+BETTER_AUTH_URL=https://app.refbook.com
+NODE_ENV=production
+APP_URL=https://app.refbook.com
+```
+
+Both `.env.development` and `.env.production` are added to `.gitignore` to prevent committing sensitive data.
 
 ### Monorepo Package Integration
 

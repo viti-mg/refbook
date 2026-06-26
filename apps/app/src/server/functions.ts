@@ -3,23 +3,105 @@
 
 import { createServerFn } from '@tanstack/react-start';
 import { z } from 'zod';
+import { db } from './db';
 
-// Example server function that uses the database
+// Middleware for error handling
+const withErrorHandler = <T extends (...args: any[]) => Promise<any>>(fn: T): T => {
+  return (async (...args: any[]) => {
+    try {
+      return await fn(...args);
+    } catch (error) {
+      console.error('Server function error:', error);
+      if (error instanceof Error) {
+        throw new Error(`Server error: ${error.message}`);
+      }
+      throw new Error('An unknown error occurred');
+    }
+  }) as T;
+};
+
+// Middleware for authentication checks (placeholder - will be integrated with @packages/auth)
+const withAuthCheck = <T extends (...args: any[]) => Promise<any>>(fn: T): T => {
+  return (async (...args: any[]) => {
+    // TODO: Integrate with @packages/auth for actual authentication
+    // For now, this is a placeholder that will be enhanced when auth is fully implemented
+    const authHeader = args[0]?.headers?.authorization;
+    if (!authHeader) {
+      throw new Error('Unauthorized: No authentication token provided');
+    }
+    return await fn(...args);
+  }) as T;
+};
+
+// Server function to get competitions
 export const getCompetitionsServer = createServerFn()
-  .handler(async () => {
-    // This function has access to @packages/db because it runs on the server
-    // For now, return empty array - actual DB queries will be added when schema is ready
-    return [];
-  });
+  .handler(
+    withErrorHandler(async () => {
+      // This will be implemented when we add actual database queries
+      // For now, return empty array
+      return [];
+    })
+  );
 
-// Example mutation server function with validation
+// Server function to get a single competition by ID
+export const getCompetitionByIdServer = createServerFn()
+  .validator(z.object({ id: z.string() }))
+  .handler(
+    withErrorHandler(async ({ data }) => {
+      // This will be implemented when we add actual database queries
+      // For now, throw an error to simulate not found
+      throw new Error('Competition not found');
+    })
+  );
+
+// Server function to create a competition (with auth check)
 export const createCompetitionServer = createServerFn({ method: 'POST' })
-  .validator(z.object({
-    name: z.string(),
-    sportType: z.string(),
-  }))
-  .handler(async ({ data }) => {
-    // This function can safely use @packages/db for database operations
-    // Implementation will be added when we have the actual schema
-    return { id: 'temp-id', ...data };
-  });
+  .validator(
+    z.object({
+      name: z.string().min(1),
+      sportType: z.string().min(1),
+      userId: z.string().min(1),
+    })
+  )
+  .handler(
+    withErrorHandler(
+      withAuthCheck(async ({ data }) => {
+        // This will be implemented when we add actual database queries
+        // For now, return a mock response
+        return { id: 'temp-id', ...data, status: 'active' };
+      })
+    )
+  );
+
+// Server function to update a competition (with auth check)
+export const updateCompetitionServer = createServerFn({ method: 'POST' })
+  .validator(
+    z.object({
+      id: z.string(),
+      name: z.string().optional(),
+      sportType: z.string().optional(),
+      status: z.string().optional(),
+    })
+  )
+  .handler(
+    withErrorHandler(
+      withAuthCheck(async ({ data }) => {
+        // This will be implemented when we add actual database queries
+        // For now, return a mock response
+        return { id: data.id, ...data, updatedAt: new Date() };
+      })
+    )
+  );
+
+// Server function to delete a competition (with auth check)
+export const deleteCompetitionServer = createServerFn({ method: 'POST' })
+  .validator(z.object({ id: z.string() }))
+  .handler(
+    withErrorHandler(
+      withAuthCheck(async ({ data }) => {
+        // This will be implemented when we add actual database queries
+        // For now, return success
+        return { success: true };
+      })
+    )
+  );

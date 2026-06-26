@@ -1,6 +1,6 @@
 ---
 title: "Set Up Server Functions and Environment Configuration"
-status: "ready"
+status: "completed"
 priority: "critical"
 estimated_hours: 4
 parent_prd: "./prd.md"
